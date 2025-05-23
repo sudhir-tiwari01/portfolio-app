@@ -1,0 +1,111 @@
+<!-- src/app/contact-dialog/contact-dialog.component.html -->
+
+<mat-card class="dialog-card">
+  <!-- HEADER: Title + Social Icons -->
+  <mat-card-header class="dialog-header">
+    <mat-card-title>Connect with Me</mat-card-title>
+    <mat-card-subtitle class="header-icons">
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">
+        <mat-icon svgIcon="linkedin" class="social-icon"></mat-icon>
+      </a>
+      <a href="https://github.com/yourusername" target="_blank">
+        <mat-icon svgIcon="github" class="social-icon"></mat-icon>
+      </a>
+      <a href="https://twitter.com/yourhandle" target="_blank">
+        <mat-icon svgIcon="twitter" class="social-icon"></mat-icon>
+      </a>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- TABS -->
+  <mat-tab-group class="dialog-tabs" mat-stretch-tabs>
+    <!-- QUICK CONNECT TAB -->
+    <mat-tab label="Quick connect">
+      <div class="tab-content">
+        <!-- EMAIL CARD -->
+        <mat-card class="inner-card email-card">
+          <div class="card-header email-header">
+            <mat-icon>email</mat-icon>
+            <span class="card-title">Email</span>
+          </div>
+          <div class="card-body">
+            <p class="subtitle">hello@aayushbharti.in</p>
+            <p class="note">Send me an email directly</p>
+          </div>
+          <!-- Removed align="end" and added class="full-width-button" on the button -->
+          <mat-card-actions class="card-actions">
+            <button
+              mat-flat-button
+              color="primary"
+              href="mailto:hello@aayushbharti.in"
+              class="full-width-button"
+            >
+              Compose
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+        <!-- SCHEDULE CARD -->
+        <mat-card class="inner-card schedule-card">
+          <div class="card-header schedule-header">
+            <mat-icon>event</mat-icon>
+            <span class="card-title">Schedule</span>
+          </div>
+          <div class="card-body">
+            <p class="subtitle">Book a time slot</p>
+            <p class="note">Book a call on my calendar</p>
+          </div>
+          <!-- Removed align="end" and added class="full-width-button" on the button -->
+          <mat-card-actions class="card-actions">
+            <button
+              mat-flat-button
+              color="accent"
+              (click)="window.open('https://calendly.com/your-calendly', '_blank')"
+              class="full-width-button"
+            >
+              View
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <!-- SEND A MESSAGE TAB (unchanged) -->
+    <mat-tab label="Send a message">
+      <div class="tab-content message-content">
+        <form class="message-form">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Your Name</mat-label>
+            <input matInput placeholder="John Doe" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Your Email</mat-label>
+            <input matInput type="email" placeholder="you@example.com" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Message</mat-label>
+            <textarea
+              matInput
+              rows="4"
+              placeholder="Hi! I’d like to connect…"
+            ></textarea>
+          </mat-form-field>
+
+          <div class="message-form-actions">
+            <button mat-flat-button color="primary" type="submit">
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- FOOTER: Availability Notice -->
+  <div class="dialog-footer">
+    <mat-icon class="status-dot">fiber_manual_record</mat-icon>
+    <span>Currently available for new opportunities</span>
+  </div>
+</mat-card>

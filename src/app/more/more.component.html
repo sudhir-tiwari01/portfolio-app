@@ -1,0 +1,191 @@
+<!-- src/app/more/more.component.html -->
+
+<div class="min-h-screen bg-black text-white px-4 pb-12">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header is only shown when the email form is NOT visible -->
+    <h2
+      *ngIf="!showForm"
+      class="
+        text-3xl font-sans font-semibold
+        text-white text-center mb-6
+        animate-pulse-header
+      "
+    >
+      Select a Date for Your Meeting
+    </h2>
+
+    <!-- Layout: Calendar and Time Slots Side-by-Side -->
+    <div class="flex flex-col md:flex-row gap-6">
+      <!-- Calendar Wrapper: hidden once showForm === true -->
+      <div
+        *ngIf="!showForm"
+        class="
+          group
+          bg-gray-900 rounded-lg shadow-lg p-4
+          transform transition-transform duration-300
+          hover:scale-105
+          flex-shrink-0
+          md:w-2/3
+        "
+      >
+        <full-calendar
+          [options]="monthCalendarOptions"
+          class="bg-gray-900 text-white"
+        ></full-calendar>
+      </div>
+
+      <!-- Right Column: Either time slots or (if showForm) just the form -->
+      <div class="flex-grow">
+        <!-- Time Slots (visible if showTimeSlots && !showForm) -->
+        <ng-container *ngIf="showTimeSlots && !showForm">
+          <div class="flex justify-between items-center mb-4">
+            <button
+              (click)="backToMonth()"
+              class="
+                text-white font-sans
+                hover:text-purple-400
+                transition
+              "
+            >
+              ← Back to Month
+            </button>
+            <h3 class="text-2xl font-sans font-semibold text-white text-center">
+              {{ selectedDate | date : "fullDate" }}
+            </h3>
+            <div class="w-20"></div> <!-- placeholder for spacing -->
+          </div>
+
+          <div
+            class="
+              grid grid-cols-2 sm:grid-cols-3
+              lg:grid-cols-4 xl:grid-cols-6
+              gap-4
+            "
+          >
+            <button
+              *ngFor="let slot of filteredSlots"
+              (click)="selectTime(slot)"
+              class="
+                bg-purple-600/70 text-white
+                px-4 py-2
+                rounded-lg
+                text-center
+                font-sans font-medium
+                hover:bg-purple-600
+                transition
+              "
+            >
+              {{ slot }}
+            </button>
+          </div>
+          <!-- If no future slots remain (e.g., picked today and it's late) -->
+          <div
+            *ngIf="filteredSlots.length === 0"
+            class="mt-4 text-center text-gray-400"
+          >
+            No available time slots left for this date.
+          </div>
+        </ng-container>
+
+        <!-- Email Form (visible if showForm is true) -->
+        <ng-container *ngIf="showForm">
+          <div class="flex justify-between items-center mb-4">
+            <button
+              (click)="backToSlots()"
+              class="
+                text-white font-sans
+                hover:text-purple-400
+                transition
+              "
+            >
+              ← Back to Time Slots
+            </button>
+            <!-- The selected meeting time displayed top-right -->
+            <div class="text-right text-gray-300 text-sm">
+              Meeting: {{ formatSelectedSlot() }}
+            </div>
+          </div>
+
+          <div
+            class="
+              bg-gray-800/80
+              text-white
+              p-6
+              rounded-xl
+            "
+          >
+            <div class="space-y-4">
+              <!-- Subject / Agenda Input -->
+              <div>
+                <label class="block text-sm font-medium mb-1 text-gray-200">
+                  Agenda / Subject
+                </label>
+                <input
+                  type="text"
+                  [(ngModel)]="formSubject"
+                  class="
+                    w-full
+                    px-4 py-2
+                    bg-gray-700 text-white
+                    border border-gray-600 rounded-lg
+                    focus:outline-none focus:border-purple-500
+                  "
+                  placeholder="Brief subject for the meeting"
+                />
+              </div>
+
+              <!-- Message Textarea -->
+              <div>
+                <label class="block text-sm font-medium mb-1 text-gray-200">
+                  Message
+                </label>
+                <textarea
+                  rows="4"
+                  [(ngModel)]="formMessage"
+                  class="
+                    w-full
+                    px-4 py-2
+                    bg-gray-700 text-white
+                    border border-gray-600 rounded-lg
+                    focus:outline-none focus:border-purple-500
+                  "
+                  placeholder="Any details or agenda…"
+                ></textarea>
+              </div>
+
+              <!-- Buttons: Cancel & Send Email -->
+              <div class="flex justify-end space-x-4 mt-6">
+                <button
+                  (click)="backToSlots()"
+                  class="
+                    px-4 py-2
+                    bg-gray-600 hover:bg-gray-500
+                    text-white
+                    rounded-lg
+                    font-sans font-medium
+                    transition
+                  "
+                >
+                  Cancel
+                </button>
+                <button
+                  (click)="sendEmail()"
+                  class="
+                    px-4 py-2
+                    bg-purple-700 hover:bg-purple-600
+                    text-white
+                    rounded-lg
+                    font-sans font-medium
+                    transition
+                  "
+                >
+                  Send Email
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

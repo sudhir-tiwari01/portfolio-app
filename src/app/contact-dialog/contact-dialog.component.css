@@ -1,0 +1,173 @@
+/* src/app/contact-dialog/contact-dialog.component.css */
+
+/* 1) The outer mat-card that acts as the dialog surface */
+.dialog-card {
+  max-width: 500px;
+  margin: 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* 2) Header area: title on left, icons on right */
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;  /* white bar behind header */
+  padding: 16px;
+}
+
+.header-icons a {
+  margin-left: 12px;
+}
+
+.social-icon {
+  font-size: 28px;
+  color: #333333;
+  transition: color 0.2s ease;
+}
+
+.social-icon:hover {
+  color: #000000;
+}
+
+/* 3) Tabs styling: keep standard white background */
+.dialog-tabs {
+  background-color: #ffffff;
+}
+
+/* Override default underline & tabs background */
+.dialog-tabs .mat-tab-header {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dialog-tabs .mat-tab-labels {
+  padding: 0 16px;
+}
+
+.dialog-tabs .mat-tab-label {
+  text-transform: none;
+  font-weight: 500;
+  color: #616161;
+}
+
+.dialog-tabs .mat-tab-label.mat-tab-label-active {
+  color: #000000;
+}
+
+.dialog-tabs .mat-ink-bar {
+  background-color: #3f51b5; /* primary color underline */
+}
+
+/* 4) Quick connect / message area */
+.tab-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* 4a) Inner cards (Email & Schedule) */
+.inner-card {
+  flex: 1 1 calc(50% - 16px);
+  min-width: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Card header bars */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  color: #ffffff;
+}
+
+.email-header {
+  background-color: #1976d2; /* blue */
+}
+
+.schedule-header {
+  background-color: #9c27b0; /* purple */
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Card body */
+.card-body {
+  padding: 16px;
+}
+
+.subtitle {
+  font-weight: 600;
+  margin: 0;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #757575;
+  margin-top: 4px;
+}
+
+/* Card footer (button) */
+mat-card-actions {
+  padding: 0 16px 16px 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-card-actions button {
+  text-transform: none;
+}
+
+/* 5) “Send a message” form area */
+.message-content {
+  padding: 16px;
+}
+
+.message-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.message-form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Form field overrides to keep them crisp on white background */
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #f5f5f5; /* light gray background behind inputs */
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+  color: #212121;
+}
+
+/* 6) Footer availability line */
+.dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  background-color: #ffffff;
+}
+
+.status-dot {
+  font-size: 12px;
+  color: #4caf50; /* green */
+  margin-right: 6px;
+}
+
