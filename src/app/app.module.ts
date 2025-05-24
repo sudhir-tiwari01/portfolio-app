@@ -21,6 +21,9 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoaderComponent } from './loader/loader.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     HomeComponent,
     MoreComponent,
     ContactDialogComponent,
+    NavbarComponent,
+    LoaderComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

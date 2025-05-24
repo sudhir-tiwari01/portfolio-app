@@ -1,0 +1,100 @@
+<!-- src/app/about/about.component.html -->
+<div class="about-container">
+  <div class="inner-wrapper">
+    <!-- === LEFT COLUMN: INTRO + SOCIAL ICONS === -->
+    <div class="text-column">
+      <h2 class="heading">
+        Hi there! I’m
+        <span class="gradient-text">Sudhir Tiwari</span>
+      </h2>
+
+      <!-- 🔄 Updated Intro Description Below 🔄 -->
+      <p class="body-text">
+        Hi there! I'm Sudhir, a Full-Stack Developer with over 4 years of
+        experience in designing, developing, and deploying web applications.
+        I work with a variety of technologies, including Java, Spring Boot,
+        Angular, and TypeScript, along with Groovy and Go. My background
+        includes building RESTful APIs, implementing microservices
+        architectures, and integrating distributed systems for seamless data
+        flow.
+      </p>
+
+      <p class="body-text">
+        Outside of coding, I enjoy staying active by hitting the gym. I also
+        love traveling and exploring new places, whether it's a bustling city
+        or a serene mountain trail. These experiences help me stay inspired
+        and bring fresh perspectives to my work.
+      </p>
+
+      <p class="body-text">
+        I'm committed to continuous learning, innovative problem-solving, and
+        agile methodologies, aiming to deliver software solutions that make a
+        real-world impact. Let's connect and create something amazing
+        together!
+      </p>
+
+      <!-- SOCIAL ICONS (Using SVGs from assets/svg-icons/) -->
+      <div class="social-icons">
+        <a
+          href="https://www.linkedin.com/in/sudhir-tiwari-a9656a159"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="assets/svg-icons/icons8-linkedin.svg"
+            alt="LinkedIn"
+            class="social-icon"
+          />
+        </a>
+        <a
+          href="https://github.com/sudhir-tiwari01"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="assets/svg-icons/icons8-github.svg"
+            alt="GitHub"
+            class="social-icon"
+          />
+        </a>
+        <a
+          href="https://twitter.com/your-username"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="assets/svg-icons/icons8-twitter-bird.svg"
+            alt="Twitter"
+            class="social-icon"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- === RIGHT COLUMN: 3-CARD CAROUSEL === -->
+    <div class="carousel-column" @fadeInOut>
+      <div class="carousel-container">
+        <!-- Render all 3 cards, each always shows its caption overlaid -->
+        <ng-container *ngFor="let item of carouselItems; let i = index">
+          <div
+            class="carousel-item {{ getPositionClass(i) }}"
+            [@fadeInOut]="'in'"
+          >
+            <div class="image-wrapper">
+              <img
+                [src]="item.imageUrl"
+                alt="Carousel Image {{ i + 1 }}"
+                class="carousel-image"
+              />
+              <!-- Always show the caption inside the image at its bottom -->
+              <div class="caption-overlay">
+                {{ item.caption }}
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>

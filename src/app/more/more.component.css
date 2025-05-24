@@ -1,16 +1,8 @@
 /* src/app/more/more.component.css */
 
-/* 1) Animate the header text (fade‐in + subtle pulse) */
-@keyframes headerPulse {
-  0%   { opacity: 0; transform: scale(0.9); }
-  50%  { opacity: 1; transform: scale(1.02); }
-  100% { opacity: 1; transform: scale(1); }
-}
-.animate-pulse-header {
-  animation: headerPulse 1.5s ease-out;
-}
+/* 1) Animate the header text is already handled via animate-pulse-header */
 
-/* 2) Quick pulse animation for a clicked date cell */
+/* 2) Quick pulse animation for clicked date cell */
 @keyframes datePulse {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.1); }
@@ -23,13 +15,20 @@
 /* 3) Persistently highlight the selected date cell */
 .selected-date-cell {
   background-color: rgba(139, 92, 246, 0.5); /* Tailwind purple-600/50 */
-  border-radius: 0.75rem; /* rounded-lg */
+  border-radius: 0.75rem;
 }
 
-/* 4) FullCalendar day‐header (week names) and day numbers in white */
+/* 4) Ensure FullCalendar day titles (M, T, W, …) and numbers are white */
 .fc .fc-col-header-cell-cushion {
   color: white !important;
 }
 .fc .fc-daygrid-day-number {
   color: white !important;
+}
+
+/* 5) Add hover effect on all day cells to give slight background change */
+.fc .fc-daygrid-day-frame:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }

@@ -1,45 +1,13 @@
 <!-- src/app/app.component.html -->
 
-<!-- ===========================
-     Shared Navbar (exactly as on Home)
-     =========================== -->
-<nav
-  class="
-    w-full
-    bg-black/90
-    backdrop-blur-md
-    fixed top-0 z-50
-    flex justify-between items-center
-    px-8 py-4
-    font-sans text-white
-  "
->
-  <!-- Brand / Logo -->
-  <div class="text-2xl font-bold">AB</div>
+<!-- Loader overlay -->
+<app-loader [isVisible]="isLoading"></app-loader>
 
-  <!-- Navigation Links -->
-  <ul class="flex space-x-6">
-    <li><a routerLink="/home" class="hover:text-purple-400">Home</a></li>
-    <li><a routerLink="/about" class="hover:text-purple-400">About</a></li>
-    <li><a routerLink="/projects" class="hover:text-purple-400">Work</a></li>
-    <li><a routerLink="/blog" class="hover:text-purple-400">Blog</a></li>
-    <li><a routerLink="/more" class="hover:text-purple-400">More</a></li>
-    <li>
-      <a
-        routerLink="/contact"
-        class="
-          border border-white px-4 py-1 rounded-full
-          hover:bg-white hover:text-black
-          transition
-        "
-      >Book a Call</a
-      >
-    </li>
-  </ul>
-</nav>
+<!-- Shared Navbar -->
+<app-navbar></app-navbar>
 
-<!-- Spacer so content sits below the fixed navbar; now with bg-black -->
+<!-- Spacer to account for fixed navbar height -->
 <div class="h-20 bg-black"></div>
 
-<!-- Render whichever component is active (Home, More, etc.) -->
+<!-- Route outlet: Home, More, etc. will appear here -->
 <router-outlet></router-outlet>

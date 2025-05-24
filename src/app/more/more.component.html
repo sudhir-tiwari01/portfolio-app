@@ -2,21 +2,27 @@
 
 <div class="min-h-screen bg-black text-white px-4 pb-12">
   <div class="max-w-6xl mx-auto">
-    <!-- Header is only shown when the email form is NOT visible -->
-    <h2
-      *ngIf="!showForm"
-      class="
-        text-3xl font-sans font-semibold
-        text-white text-center mb-6
-        animate-pulse-header
-      "
-    >
-      Select a Date for Your Meeting
-    </h2>
+    <!-- 1) Styled Header as a pill-shaped "button" -->
+    <div *ngIf="!showForm" class="flex justify-center mb-6">
+      <button
+        class="
+          bg-purple-700/70
+          text-white
+          px-8 py-3
+          rounded-full
+          font-sans font-semibold
+          transform transition
+          hover:bg-purple-600/80
+          focus:outline-none
+        "
+      >
+        Select a Date for Your Meeting
+      </button>
+    </div>
 
-    <!-- Layout: Calendar and Time Slots Side-by-Side -->
+    <!-- 2) Layout: Calendar (left) + Time Slots / Form (right) -->
     <div class="flex flex-col md:flex-row gap-6">
-      <!-- Calendar Wrapper: hidden once showForm === true -->
+      <!-- 2a) Calendar Wrapper: reduced width to md:w-1/2 -->
       <div
         *ngIf="!showForm"
         class="
@@ -25,7 +31,7 @@
           transform transition-transform duration-300
           hover:scale-105
           flex-shrink-0
-          md:w-2/3
+          md:w-1/2
         "
       >
         <full-calendar
@@ -34,9 +40,9 @@
         ></full-calendar>
       </div>
 
-      <!-- Right Column: Either time slots or (if showForm) just the form -->
+      <!-- 2b) Right Column: Time Slots or (if showForm) the email form -->
       <div class="flex-grow">
-        <!-- Time Slots (visible if showTimeSlots && !showForm) -->
+        <!-- 2b-i) Time Slots -->
         <ng-container *ngIf="showTimeSlots && !showForm">
           <div class="flex justify-between items-center mb-4">
             <button
@@ -52,7 +58,7 @@
             <h3 class="text-2xl font-sans font-semibold text-white text-center">
               {{ selectedDate | date : "fullDate" }}
             </h3>
-            <div class="w-20"></div> <!-- placeholder for spacing -->
+            <div class="w-20"></div>
           </div>
 
           <div
@@ -78,7 +84,6 @@
               {{ slot }}
             </button>
           </div>
-          <!-- If no future slots remain (e.g., picked today and it's late) -->
           <div
             *ngIf="filteredSlots.length === 0"
             class="mt-4 text-center text-gray-400"
@@ -87,7 +92,7 @@
           </div>
         </ng-container>
 
-        <!-- Email Form (visible if showForm is true) -->
+        <!-- 2b-ii) Email Form -->
         <ng-container *ngIf="showForm">
           <div class="flex justify-between items-center mb-4">
             <button
@@ -100,20 +105,22 @@
             >
               ← Back to Time Slots
             </button>
-            <!-- The selected meeting time displayed top-right -->
-            <div class="text-right text-gray-300 text-sm">
-              Meeting: {{ formatSelectedSlot() }}
-            </div>
+            <!-- The selected meeting time displayed as a chip -->
+            <span
+              class="
+                bg-purple-600/80
+                text-white
+                text-sm font-sans font-medium
+                px-3 py-1
+                rounded-full
+              "
+            >
+              {{ formatSelectedSlot() }}
+            </span>
           </div>
 
-          <div
-            class="
-              bg-gray-800/80
-              text-white
-              p-6
-              rounded-xl
-            "
-          >
+          <!-- Form wrapper with max width so it doesn’t stretch too wide -->
+          <div class="max-w-md mx-auto bg-gray-800/80 text-white p-6 rounded-xl">
             <div class="space-y-4">
               <!-- Subject / Agenda Input -->
               <div>

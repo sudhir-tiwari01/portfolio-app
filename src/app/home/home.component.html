@@ -3,47 +3,13 @@
 <div
   class="min-h-screen text-white flex flex-col relative"
   style="
-    background-image: url('/assets/images/beautiful-sky-full-stars-trona-ca.jpg');
+    background-image: url('/assets/images/about-folder/beautiful-sky-full-stars-trona-ca.jpg');
     background-size: cover;
     background-position: center;
   "
 >
   <!-- ===========================
-       Navbar (unchanged)
-       =========================== -->
-  <nav
-    class="
-      flex justify-between items-center
-      px-8 py-4
-      backdrop-blur-md bg-black/60
-      fixed top-0 w-full z-50
-      font-sans
-    "
-  >
-    <div class="text-2xl font-bold">AB</div>
-    <ul class="flex space-x-6 font-medium">
-      <li><a routerLink="/home" class="hover:text-purple-400">Home</a></li>
-      <li><a routerLink="/about" class="hover:text-purple-400">About</a></li>
-      <li><a routerLink="/projects" class="hover:text-purple-400">Work</a></li>
-      <li><a href="#" class="hover:text-purple-400">Blog</a></li>
-      <li><a href="#" class="hover:text-purple-400">More</a></li>
-      <li>
-        <button
-          class="
-            bg-gray-800 border border-white
-            px-4 py-1 rounded-full
-            hover:bg-white hover:text-black
-            transition font-sans
-          "
-        >
-          Book a Call
-        </button>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- ===========================
-       Hero Section (large text)
+       Hero Section (tuned font sizes)
        =========================== -->
   <section
     class="
@@ -51,49 +17,72 @@
       flex flex-col justify-center items-center
       text-center
       px-4
-      pt-40
       space-y-8
     "
   >
-    <!-- Main heading, extremely large -->
+    <!-- Main heading (closer to the reference image) -->
     <div class="space-y-2">
+      <!-- FIRST LINE: "I help founders turn ideas" -->
       <h1
-        class="
-          text-6xl sm:text-7xl md:text-8xl lg:text-9xl
-          font-bold font-sans
-          leading-tight
-        "
+        style="
+      /* Clamp ensures:
+         - Minimum font‐size is 3rem (48px) on small screens
+         - Preferred is 6vw (6% of viewport width) as screen grows
+         - Maximum is 8rem (128px) on very large screens */
+      font-size: clamp(3rem, 6vw, 8rem);
+      font-weight: 700;
+      font-family: sans-serif;
+      line-height: 1.1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      margin: 0;
+    "
       >
         I help founders turn ideas
       </h1>
+
+      <!-- SECOND LINE: "into seamless digital experiences" -->
       <h1
-        class="
-          text-6xl sm:text-7xl md:text-8xl lg:text-9xl
-          font-bold font-sans
-          leading-tight
-        "
+        style="
+      font-size: clamp(3rem, 6vw, 8rem);
+      font-weight: 700;
+      font-family: sans-serif;
+      line-height: 1.1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      margin: 0;
+    "
       >
         into seamless
-        <span class="font-serif italic font-medium">digital experiences</span>
+        <span
+          style="
+        font-style: italic;
+        font-family: serif;
+        font-weight: 500;
+      "
+        >
+      digital experiences
+    </span>
       </h1>
     </div>
 
-    <!-- Subheading (scaled up) -->
-    <div class="space-y-1 pt-8">
+    <!-- Subheading (single-line layout) -->
+    <div class="flex flex-wrap justify-center items-center gap-4 pt-8">
       <h2
         class="
-          text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-          font-medium font-sans
-        "
+      text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem]
+      font-medium font-sans
+      drop-shadow-md
+      whitespace-nowrap
+    "
       >
-        Hello, I’m
-        <span class="font-bold">Sudhir Tiwari</span>
+        Hello, I’m <span class="font-bold">Sudhir Tiwari</span>
       </h2>
       <h2
         class="
-          text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-          font-medium font-sans
-        "
+      text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem]
+      font-medium font-sans
+      drop-shadow-md
+      whitespace-nowrap
+    "
       >
         a Full Stack Developer
       </h2>
@@ -101,7 +90,7 @@
 
     <!-- ============ Call to Action & Email Buttons ============ -->
     <div class="mt-10 flex flex-col sm:flex-row gap-6 items-center">
-      <!-- “Let’s Connect” Button (unchanged styling) -->
+      <!-- “Let’s Connect” Button -->
       <button
         (click)="openModal()"
         class="
@@ -115,7 +104,7 @@
           font-sans
         "
       >
-        <!-- 1) The visible text + arrow-in-circle -->
+        <!-- 1) Visible text + arrow-in-circle -->
         <span
           class="
             relative z-10 flex items-center gap-3
@@ -140,7 +129,7 @@
           </span>
         </span>
 
-        <!-- 2) The expanding white background -->
+        <!-- 2) Expanding white background -->
         <span
           class="
             absolute inset-0
@@ -152,7 +141,7 @@
         ></span>
       </button>
 
-      <!-- Email Copy‐Button (unchanged) -->
+      <!-- Email Copy‐Button -->
       <button
         (click)="copyEmail()"
         class="
@@ -246,8 +235,9 @@
 
     <!-- Social icons row -->
     <div class="flex justify-center gap-8 mt-2">
+      <!-- LinkedIn icon -->
       <a
-        href="https://www.linkedin.com/in/sudhir-tiwari-a9656a159 "
+        href="https://www.linkedin.com/in/sudhir-tiwari-a9656a159"
         target="_blank"
         class="hover:text-blue-400"
         aria-label="LinkedIn"
@@ -262,6 +252,8 @@
           />
         </svg>
       </a>
+
+      <!-- GitHub icon -->
       <a
         href="https://github.com/sudhir-tiwari01"
         target="_blank"
@@ -274,10 +266,12 @@
           viewBox="0 0 24 24"
         >
           <path
-            d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.292 9.408 7.867 10.94.576.105.787-.25.787-.555 0-.276-.01-1.01-.016-1.982-3.202.697-3.88-1.542-3.88-1.542-.523-1.326-1.277-1.68-1.277-1.68-1.044-.714.08-.7.08-.7 1.154.08 1.763 1.185 1.763 1.185 1.026 1.758 2.692 1.25 3.346.956.104-.743.402-1.25.732-1.538-2.555-.292-5.244-1.277-5.244-5.68 0-1.255.453-2.283 1.192-3.087-.12-.293-.518-1.467.113-3.058 0 0 .973-.312 3.188 1.18.923-.257 1.915-.385 2.9-.39.985.005 1.977.133 2.902.39 2.212-1.492 3.182-1.18 3.182-1.18.634 1.591.237 2.765.117 3.058.744.804 1.188 1.833 1.188 3.087 0 4.415-2.694 5.385-5.26 5.674.414.357.783 1.06.783 2.138 0 1.543-.014 2.787-.014 3.17 0 .31.207.668.793.555C20.71 21.408 24 17.1 24 12c0-6.35-5.15-11.5-12-11.5z"
+            d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.292 9.408 7.867 10.94.576.105.787-.25.787-.555 0-.276-.011-1.01-.017-1.982-3.202.697-3.88-1.542-3.88-1.542-.523-1.326-1.277-1.68-1.277-1.68-1.044-.714.08-.7.08-.7 1.154.08 1.763 1.185 1.763 1.185 1.026 1.758 2.692 1.25 3.346.956.104-.743.402-1.25.732-1.538-2.555-.292-5.244-1.277-5.244-5.68 0-1.255.453-2.283 1.192-3.087-.12-.293-.518-1.467.113-3.058 0 0 .973-.312 3.188 1.18.923-.257 1.915-.385 2.9-.39.985.005 1.977.133 2.902.39 2.212-1.492 3.182-1.18 3.182-1.18.634 1.591.237 2.765.117 3.058.744.804 1.188 1.833 1.188 3.087 0 4.415-2.694 5.385-5.26 5.674.414.357.783 1.06.783 2.138 0 1.543-.014 2.787-.014 3.17 0 .31.207.668.793.555C20.71 21.408 24 17.1 24 12c0-6.35-5.15-11.5-12-11.5z"
           />
         </svg>
       </a>
+
+      <!-- Twitter icon -->
       <a
         href="https://twitter.com/yourhandle"
         target="_blank"
@@ -290,7 +284,7 @@
           viewBox="0 0 24 24"
         >
           <path
-            d="M23.953 4.57a10.02 10.02 0 0 1-2.825.775A4.932 4.932 0 0 0 23.337 3a9.865 9.865 0 0 1-3.127 1.2 4.916 4.916 0 0 0-8.38 4.482A13.944 13.944 0 0 1 1.64 3.16a4.916 4.916 0 0 0 1.523 6.56 4.904 4.904 0 0 1-2.228-.616c-.054 2.28 1.582 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.924 4.924 0 0 0 4.604 3.417A9.868 9.868 0 0 1 .96 19.54a13.94 13.94 0 0 0 7.548 2.212c9.057 0 14.009-7.514 14.009-14.009 0-.213-.004-.425-.014-.637A10.012 10.012 0 0 0 24 4.59z"
+            d="M23.953 4.57a10.02 10.02 0 0 1-2.825.775A4.932 4.932 0 0 00 23.337 3a9.865 9.865 0 0 1-3.127 1.2 4.916 4.916 0 0 0-8.38 4.482A13.944 13.944 0 0 1 1.64 3.16a4.916 4.916 0 0 0 1.523 6.56 4.904 4.904 0 0 1-2.228-.616c-.054 2.28 1.582 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.924 4.924 0 0 0 4.604 3.417A9.868 9.868 0 0 1 .96 19.54a13.94 13.94 0 0 0 7.548 2.212c9.057 0 14.009-7.514 14.009-14.009 0-.213-.004-.425-.014-.637A10.012 10.012 0 0 0 24 4.59z"
           />
         </svg>
       </a>
@@ -323,51 +317,51 @@
       <a
         routerLink="/more"
         class="
-      relative inline-flex items-center justify-center
-      bg-purple-700/50
-      w-80
-      h-14
-      rounded-full
-      overflow-hidden
-      group
-      font-sans
-      text-white
-      hover:text-purple-700
-      transition
-    "
+          relative inline-flex items-center justify-center
+          bg-purple-700/50
+          w-80
+          h-14
+          rounded-full
+          overflow-hidden
+          group
+          font-sans
+          text-white
+          hover:text-purple-700
+          transition
+        "
         style="width: 100%"
       >
-    <span
-      class="
-        relative z-10 flex items-center gap-3
-        transition-colors duration-300
-        text-white
-        group-hover:text-purple-700
-      "
-    >
-      Book a time slot
-      <span
-        class="
-          flex-shrink-0
-          w-9 h-9
-          bg-white text-purple-700
-          rounded-full
-          flex items-center justify-center
-          transition-transform duration-300
-          group-hover:scale-0
-        "
-      >
-        ➜
-      </span>
-    </span>
         <span
           class="
-        absolute inset-0
-        bg-white
-        scale-x-0 origin-left
-        transition-transform duration-300
-        group-hover:scale-x-100
-      "
+            relative z-10 flex items-center gap-3
+            transition-colors duration-300
+            text-white
+            group-hover:text-purple-700
+          "
+        >
+          Book a time slot
+          <span
+            class="
+              flex-shrink-0
+              w-9 h-9
+              bg-white text-purple-700
+              rounded-full
+              flex items-center justify-center
+              transition-transform duration-300
+              group-hover:scale-0
+            "
+          >
+            ➜
+          </span>
+        </span>
+        <span
+          class="
+            absolute inset-0
+            bg-white
+            scale-x-0 origin-left
+            transition-transform duration-300
+            group-hover:scale-x-100
+          "
         ></span>
       </a>
     </div>

@@ -1,0 +1,239 @@
+/* src/app/about/about.component.css */
+
+/* ===== 1) Base Container & Layout ===== */
+.about-container {
+  background-color: #000; /* Pure black background */
+  color: #f0f0f0; /* Very light gray text */
+  min-height: 100vh; /* At least full viewport height */
+  padding-bottom: 4rem; /* Room for extra sections below */
+}
+
+.inner-wrapper {
+  max-width: 80rem; /* ~1280px */
+  margin: 0 auto;
+  padding: 3rem 1rem; /* 48px top/bottom, 16px left/right */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* 32px gap on mobile between text and carousel */
+}
+
+/* On large screens (≥1024px), switch to two columns */
+@media (min-width: 1024px) {
+  .inner-wrapper {
+    flex-direction: row;
+    gap: 2rem; /* 32px gap between left & right columns */
+  }
+}
+
+/* LEFT COLUMN: Intro text */
+.text-column {
+  flex: 1;
+}
+
+.heading {
+  font-size: 2.25rem; /* ~36px */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Gradient text for “Sudhir Tiwari” */
+.gradient-text {
+  color: #e100ff; /* Fallback color */
+  background: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* For Firefox */
+  background-clip: text;
+  color: transparent;
+}
+
+.body-text {
+  font-size: 1.125rem; /* ~18px */
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+
+/* SOCIAL ICONS: using SVGs */
+.social-icons {
+  display: flex;
+  gap: 1rem; /* 16px between icons */
+  margin-top: 1rem;
+}
+
+/* Make dark icons visible on black background */
+.social-icon {
+  width: 1.75rem; /* ~28px */
+  height: 1.75rem;
+  filter: invert(1) brightness(2);
+  transition: filter 0.2s ease;
+}
+
+.social-icon:hover {
+  filter: invert(1) brightness(1.5);
+}
+
+/* ===== 2) Carousel Column & Overflow Hidden ===== */
+.carousel-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden; /* Prevent side cards from spilling into text */
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 28rem; /* ~448px */
+  height: 400px; /* Adjust for your images’ aspect ratio */
+  perspective: 1200px; /* Creates 3D perspective */
+  overflow: visible; /* Cards themselves are clipped by .carousel-column */
+}
+
+/* ===== 3) Each Card & 3D Positioning ===== */
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide backside when rotated */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Card “behind” on the left */
+.carousel-item.prev {
+  transform: translateX(-35%) translateZ(-100px) rotateY(30deg) scale(0.8);
+  opacity: 0.5;
+  z-index: 10;
+}
+
+/* Center (in-focus) card */
+.carousel-item.current {
+  transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+  opacity: 1;
+  z-index: 20;
+}
+
+/* Card “behind” on the right */
+.carousel-item.next {
+  transform: translateX(35%) translateZ(-100px) rotateY(-30deg) scale(0.8);
+  opacity: 0.5;
+  z-index: 10;
+}
+
+/* (If you ever add extras) Hide them out of sight */
+.carousel-item.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateZ(-300px) scale(0.6);
+  z-index: 0;
+}
+
+/* ===== 4) Image Wrapper & Caption Overlay ===== */
+/* Wrapper around each <img> so we can overlay text at bottom */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Center-crop so it fills container */
+  border-radius: 0.5rem; /* ~8px, same as rounded-xl */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.carousel-image:hover {
+  transform: scale(1.02);
+}
+
+/* Caption overlay inside the image at bottom */
+.caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+  color: #fff; /* Pure white text */
+  font-weight: 600; /* Bold */
+  text-align: center;
+  padding: 0.5rem 0; /* 8px top/bottom */
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  font-size: 1rem; /* ~16px, adjust if needed */
+}
+
+/* ===== 5) Responsive Breakpoints ===== */
+
+/* Tablet (768px–1023px): shrink carousel slightly */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .carousel-container {
+    max-width: 22rem; /* ~352px */
+    height: 320px; /* adjust for your images */
+  }
+}
+
+/* Mobile (≤767px): stack columns, hide side cards, shrink everything */
+@media (max-width: 767px) {
+  /* Stack left + right columns vertically */
+  .inner-wrapper {
+    flex-direction: column;
+    gap: 1.5rem; /* smaller gap on mobile */
+  }
+
+  /* Hide the prev/next cards entirely on mobile */
+  .carousel-item.prev,
+  .carousel-item.next,
+  .carousel-item.hidden {
+    display: none;
+  }
+
+  /* Shrink carousel to full width and shorter height */
+  .carousel-container {
+    max-width: 100%;
+    height: 260px; /* adjust as desired */
+  }
+
+  /* Adjust font sizes on mobile */
+  .heading {
+    font-size: 1.875rem; /* ~30px */
+  }
+
+  .body-text {
+    font-size: 1rem; /* ~16px */
+  }
+
+  .caption-overlay {
+    font-size: 0.875rem; /* ~14px */
+  }
+
+  /* Reduce bottom padding -->
+  .about-container {
+    padding-bottom: 2rem;
+  }
+}
+
+/* ===== 6) Extra Section Placeholder ===== */
+  .extra-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #333; /* Subtle divider */
+  }
+
+  .section-heading {
+    font-size: 2rem; /* ~32px */
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-bottom: 1.5rem;
+  }
+}
