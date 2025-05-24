@@ -1,0 +1,45 @@
+<!-- src/app/experience/experience.component.html -->
+<section class="experience-section" #experienceSection>
+  <h2 class="section-title">Experience</h2>
+
+  <div class="timeline-container">
+    <!-- Single vertical track in the *exact center* -->
+    <div class="timeline-track">
+      <!-- Progress filling from TOP down -->
+      <div
+        class="timeline-progress"
+        [style.height.%]="scrollPercent"
+      ></div>
+      <!-- Circular thumb that moves from top to bottom -->
+      <div
+        class="timeline-thumb"
+        [style.top.%]="scrollPercent"
+      ></div>
+    </div>
+
+    <!-- Each entry is a flex row: left info (45%), right detail (45%), with 10% gap for the track -->
+    <div class="timeline-item" *ngFor="let entry of entries; let i = index">
+      <!-- LEFT: Company / Dates / Location -->
+      <div class="item-left">
+        <div class="company-name">{{ entry.company }}</div>
+        <div class="item-dates">{{ entry.dates }}</div>
+        <div class="item-location">{{ entry.location }}</div>
+      </div>
+
+      <!-- RIGHT: Role / Description / Skills -->
+      <div class="item-right">
+        <div class="role-title">{{ entry.role }}</div>
+        <div class="item-desc">
+          <p *ngFor="let line of entry.description.trim().split('\n')">
+            {{ line.trim() }}
+          </p>
+        </div>
+        <div class="skills-chips">
+          <span class="skill-chip" *ngFor="let s of entry.skills">
+            {{ s }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

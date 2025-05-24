@@ -1,0 +1,203 @@
+/* ===== 1) Section & Title ===== */
+.experience-section {
+  background-color: #000;
+  color: #f0f0f0;
+  padding: 4rem 1rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== 2) Timeline Container ===== */
+.timeline-container {
+  position: relative;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+/* ===== 3) Vertical Track (Centered Between 40% Columns) ===== */
+.timeline-track {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background-color: #333;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* ===== 4) Progress Fill (Scroll-based) ===== */
+.timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, #4f46e5 0%, #ec4899 100%);
+  transform-origin: top;
+  transition: height 0.1s ease-out;
+  z-index: 2;
+}
+
+/* ===== 5) Circular Thumb Indicator ===== */
+.timeline-thumb {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1rem;
+  height: 1rem;
+  background-color: #fff;
+  border: 3px solid #4f46e5;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+/* ===== 6) Timeline Items ===== */
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5rem;      /* Increased spacing between items */
+  position: relative;
+  z-index: 2;
+}
+
+.item-left,
+.item-right {
+  width: 40%;               /* Shrink from 45% to 40% */
+  box-sizing: border-box;
+}
+
+.item-left {
+  padding-right: 3rem;      /* Increased from 2rem */
+  text-align: right;
+}
+
+.item-right {
+  padding-left: 3rem;       /* Increased from 2rem */
+  text-align: left;
+}
+
+.item-left .company-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.item-left .item-dates,
+.item-left .item-location {
+  font-size: 0.875rem;
+  color: #aaa;
+  margin-bottom: 0.25rem;
+}
+
+.item-right .role-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.item-right .item-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 0.75rem;
+}
+
+.item-right .item-desc p {
+  margin-bottom: 0.75rem;
+}
+
+/* Skills Section */
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-chip {
+  background-color: #222;
+  color: #f0f0f0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* ===== 7) Responsive Adjustments ===== */
+@media (max-width: 1023px) {
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+  }
+
+  .item-left,
+  .item-right {
+    width: 100%;
+    padding: 0 1.5rem;    /* Slightly more padding than 1rem */
+    text-align: left;
+  }
+
+  .timeline-track {
+    left: 40px;
+    transform: none;
+    width: 3px;
+  }
+
+  .timeline-thumb {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 767px) {
+  .experience-section {
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .timeline-item {
+    margin-bottom: 2rem;
+  }
+
+  .timeline-track {
+    left: 32px;
+    width: 2px;
+  }
+
+  .timeline-thumb {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-width: 2px;
+  }
+
+  .item-left .company-name {
+    font-size: 1.25rem;
+  }
+
+  .item-right .role-title {
+    font-size: 1.125rem;
+  }
+
+  .item-right .item-desc {
+    font-size: 0.9rem;
+  }
+
+  .skill-chip {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,84 @@
+/* src/app/navbar/navbar.component.css */
+
+/* ===== Navbar Layout ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000;    /* Black background */
+  padding: 1rem 2rem;        /* 16px top/bottom, 32px left/right */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Navigation links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem; /* 24px gap between links */
+}
+
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active-link {
+  color: #fff;
+}
+
+/* “Book a Call” button */
+.btn-book-call {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;      /* 8px vertical, 16px horizontal */
+  border-radius: 0.375rem;   /* 6px (rounded-md) */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-book-call:hover {
+  background-color: #fff;   /* Turn background white on hover */
+  color: #000;              /* Text turns black on hover */
+  transform: scale(1.03);   /* Slight scale up */
+}
+
+.btn-book-call:active {
+  transform: scale(0.97);   /* Slight “press” effect */
+}
+
+/* Reduce padding on smaller screens */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem; /* 12px between items */
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

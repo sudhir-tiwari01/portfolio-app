@@ -24,6 +24,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AboutComponent } from './about/about.component';
+import {ContactService} from "./services/contact.service";
+import { ExperienceComponent } from './experience/experience.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { AboutComponent } from './about/about.component';
     NavbarComponent,
     LoaderComponent,
     AboutComponent,
+    ExperienceComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { AboutComponent } from './about/about.component';
     MatFormFieldModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
