@@ -23,7 +23,7 @@ interface ExperienceEntry {
   styleUrls: ['./experience.component.css']
 })
 export class ExperienceComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('experienceSection', { static: true }) expSection!: ElementRef;
+  @ViewChild('experienceSection', {static: true}) expSection!: ElementRef;
 
   /** Scroll percentage (0–100) representing how far we've scrolled through the section */
   public scrollPercent: number = 0;
@@ -105,8 +105,8 @@ export class ExperienceComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     // Attach listeners as soon as the view is ready, then calculate initial scrollPercent
-    window.addEventListener('scroll', this.onScrollOrResizeBound, { passive: true });
-    window.addEventListener('resize', this.onScrollOrResizeBound, { passive: true });
+    window.addEventListener('scroll', this.onScrollOrResizeBound, {passive: true});
+    window.addEventListener('resize', this.onScrollOrResizeBound, {passive: true});
     this.calculateScrollPercent();
   }
 
@@ -120,28 +120,36 @@ export class ExperienceComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private calculateScrollPercent(): void {
-    const rect = this.expSection.nativeElement.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const sectionEl = this.expSection.nativeElement as HTMLElement;
+    const sectionTop = sectionEl.offsetTop;            // distance from page top to section top
+    const sectionHeight = sectionEl.offsetHeight;       // height of the section
+    const viewportHeight = window.innerHeight;          // height of the browser viewport
+    const scrollY = window.scrollY || window.pageYOffset;
 
-    // When the section is entirely below the viewport — no scroll progress yet
-    if (rect.top >= viewportHeight) {
+    // 1) Compute the “start” scroll position: when the section’s top hits
+    //    the bottom of the viewport, i.e. scrollY = sectionTop - viewportHeight
+    const startScroll = sectionTop - viewportHeight / 2;
+
+    // 2) Compute the “end” scroll position: when the section’s bottom hits
+    //    the top of the viewport, i.e. scrollY = sectionTop + sectionHeight
+    const endScroll = sectionTop + sectionHeight - viewportHeight;
+
+    // 3) If we haven’t reached the startScroll yet, progress = 0%
+    if (scrollY < startScroll) {
       this.scrollPercent = 0;
       return;
     }
 
-    // When the section is entirely above the viewport — fully scrolled
-    if (rect.bottom <= 0) {
+    // 4) If we’ve scrolled past the endScroll, progress = 100%
+    if (scrollY > endScroll) {
       this.scrollPercent = 100;
       return;
     }
 
-    // Adjusted logic to start from 0% when section starts entering from bottom of viewport
-    const totalScrollable = rect.height + viewportHeight; // total distance to scroll
-    const distanceScrolled = viewportHeight - rect.top;   // how far we've entered
-
-    let percent = (distanceScrolled / totalScrollable) * 100;
-    percent = Math.min(100, Math.max(0, percent));
-    this.scrollPercent = percent;
+    // 5) Otherwise, linearly interpolate between 0→100 over [startScroll … endScroll]
+    const totalDistance = endScroll - startScroll;               // (sectionHeight + viewportHeight)
+    const distanceTraveled = scrollY - startScroll;              // 0 → totalDistance
+    let percent = (distanceTraveled / totalDistance) * 100;
+    this.scrollPercent = Math.min(100, Math.max(0, percent));
   }
-
 }
