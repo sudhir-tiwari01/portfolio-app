@@ -1,3 +1,16 @@
+/* src/app/experience/experience.component.css */
+
+/* ===== 0) Utility for Italic + Bold + Gradient ===== */
+/* Matches the “Sudhir Tiwari” text gradient and font style */
+.italic-gradient {
+  font-style: italic;
+  font-weight: 700;
+  font-family: serif;
+  background: linear-gradient(90deg, #4f46e5, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* ===== 1) Section & Title ===== */
 .experience-section {
   background-color: #000;
@@ -5,13 +18,24 @@
   padding: 4rem 1rem;
 }
 
+/* LINE 1: “The Experience” */
+/* Now font-weight normal, with extra bottom margin */
 .section-title {
   text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+  font-size: 1.5rem;      /* ~40px */
+  font-weight: 400;       /* Not bold anymore */
+  margin-bottom: 1.5rem;  /* Extra space under the title */
   position: relative;
   z-index: 2;
+}
+
+/* LINE 2: “Experience That Brings Ideas to Life” (single line) */
+.subtitle-large {
+  text-align: center;
+  font-size: 3rem;        /* Slightly larger than .section-title */
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 2rem;
 }
 
 /* ===== 2) Timeline Container ===== */
@@ -66,48 +90,61 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 5rem;      /* Increased spacing between items */
+  margin-bottom: 5rem;      /* Space between items */
   position: relative;
-  z-index: 2;
+  z-index: 2;               /* Above track but below thumb/progress */
 }
 
-.item-left,
-.item-right {
-  width: 40%;               /* Shrink from 45% to 40% */
-  box-sizing: border-box;
-}
-
+/* ===== 7) Left Column (40%, LEFT-ALIGNED) ===== */
 .item-left {
-  padding-right: 3rem;      /* Increased from 2rem */
-  text-align: right;
-}
-
-.item-right {
-  padding-left: 3rem;       /* Increased from 2rem */
+  width: 40%;
+  box-sizing: border-box;
+  padding-right: 3rem;      /* Gap from the central timeline */
   text-align: left;
 }
 
-.item-left .company-name {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.item-left .item-dates,
-.item-left .item-location {
-  font-size: 0.875rem;
+.item-left .item-dates {
+  font-size: 0.875rem;      /* ~14px */
   color: #aaa;
   margin-bottom: 0.25rem;
 }
 
+.item-left .company-name {
+  font-size: 1.5rem;        /* ~24px */
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.item-left .item-location,
+.item-left .item-hybrid {
+  font-size: 0.875rem;      /* ~14px */
+  color: #ccc;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.item-left .location-icon,
+.item-left .hybrid-icon {
+  margin-right: 0.5rem;
+}
+
+/* ===== 8) Right Column (40%, LEFT-ALIGNED) ===== */
+.item-right {
+  width: 40%;
+  box-sizing: border-box;
+  padding-left: 3rem;       /* Gap from the central timeline */
+  text-align: left;
+}
+
 .item-right .role-title {
-  font-size: 1.25rem;
+  font-size: 1.25rem;       /* ~20px */
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .item-right .item-desc {
-  font-size: 0.95rem;
+  font-size: 0.95rem;       /* ~15px */
   line-height: 1.6;
   color: #e0e0e0;
   margin-bottom: 0.75rem;
@@ -117,11 +154,11 @@
   margin-bottom: 0.75rem;
 }
 
-/* Skills Section */
+/* ===== 9) Skills as Dynamic Chips ===== */
 .skills-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.5rem;              /* 8px gap */
 }
 
 .skill-chip {
@@ -133,7 +170,7 @@
   white-space: nowrap;
 }
 
-/* ===== 7) Responsive Adjustments ===== */
+/* ===== 10) Responsive Adjustments ===== */
 @media (max-width: 1023px) {
   .timeline-item {
     flex-direction: column;
@@ -144,19 +181,19 @@
   .item-left,
   .item-right {
     width: 100%;
-    padding: 0 1.5rem;    /* Slightly more padding than 1rem */
-    text-align: left;
+    padding: 0 1.5rem;      /* Slightly more horizontal padding on tablets */
+    text-align: left;       /* Keep left-aligned */
   }
 
   .timeline-track {
-    left: 40px;
+    left: 40px;             /* Move track to a fixed 40px from left */
     transform: none;
     width: 3px;
   }
 
   .timeline-thumb {
-    width: 0.875rem;
-    height: 0.875rem;
+    width: 0.875rem;        /* 14px */
+    height: 0.875rem;       /* 14px */
     border-width: 2px;
   }
 }
@@ -167,7 +204,7 @@
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 2rem;        /* ~32px */
   }
 
   .timeline-item {
@@ -175,29 +212,29 @@
   }
 
   .timeline-track {
-    left: 32px;
+    left: 32px;             /* Shift track further left */
     width: 2px;
   }
 
   .timeline-thumb {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.75rem;         /* 12px */
+    height: 0.75rem;        /* 12px */
     border-width: 2px;
   }
 
   .item-left .company-name {
-    font-size: 1.25rem;
+    font-size: 1.25rem;     /* ~20px */
   }
 
   .item-right .role-title {
-    font-size: 1.125rem;
+    font-size: 1.125rem;    /* ~18px */
   }
 
   .item-right .item-desc {
-    font-size: 0.9rem;
+    font-size: 0.9rem;      /* ~14px */
   }
 
   .skill-chip {
-    font-size: 0.75rem;
+    font-size: 0.75rem;     /* ~12px */
   }
 }
