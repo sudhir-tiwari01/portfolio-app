@@ -26,6 +26,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { AboutComponent } from './about/about.component';
 import {ContactService} from "./services/contact.service";
 import { ExperienceComponent } from './experience/experience.component';
+import { WorkComponent } from './work/work.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ExperienceComponent } from './experience/experience.component';
     LoaderComponent,
     AboutComponent,
     ExperienceComponent,
+    WorkComponent,
   ],
   imports: [
     BrowserModule,

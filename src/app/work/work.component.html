@@ -1,0 +1,65 @@
+<section class="work-section">
+  <!-- ===== TOP PADDING & TITLES ===== -->
+  <h2 class="work-title">work</h2>
+  <h3 class="work-subtitle">
+    Experiences that Shaped my
+    <span class="italic-gradient">Journey</span>
+  </h3>
+
+  <div class="work-container">
+    <!-- Loop through each project entry -->
+    <div class="work-item" *ngFor="let entry of workEntries">
+      <!-- ===== LEFT CARD (40% width) ===== -->
+      <div class="work-card-wrapper">
+        <!-- Gradient frame behind the card -->
+        <div class="gradient-frame"></div>
+
+        <!-- Actual card content, sits on top of the frame -->
+        <div class="work-card">
+          <!-- Summary block with padding -->
+          <div class="card-summary">
+            {{ entry.summary }}
+          </div>
+
+          <!-- Image block (with overlay) -->
+          <div class="card-image">
+            <img [src]="entry.imageUrl" alt="{{ entry.projectName }}" />
+            <div class="hover-overlay">Click for more details</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== RIGHT DETAILS (60% width) ===== -->
+      <div class="work-details">
+        <!-- Project Name -->
+        <div class="project-name">{{ entry.projectName }}</div>
+
+        <!-- Dates -->
+        <div class="project-dates">{{ entry.dates }}</div>
+
+        <!-- Company & “Associated with …” -->
+        <div class="company-info">
+          <div class="company-logo">
+            <div class="logo-placeholder">Logo</div>
+          </div>
+          <div class="company-text">{{ entry.relation }}</div>
+        </div>
+
+        <!-- Full Description / Roles & Responsibilities -->
+        <div class="project-desc">
+          <ng-container *ngFor="let para of entry.description.trim().split('\n\n')">
+            <p class="desc-paragraph">{{ para }}</p>
+          </ng-container>
+        </div>
+
+        <!-- Skills as animated chips with actual icons -->
+        <div class="skills-chips">
+          <span class="skill-chip" *ngFor="let s of entry.skills">
+            <img [src]="s.icon" alt="{{ s.name }}" class="skill-icon" />
+            {{ s.name }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
