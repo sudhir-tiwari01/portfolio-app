@@ -27,6 +27,7 @@ import { AboutComponent } from './about/about.component';
 import {ContactService} from "./services/contact.service";
 import { ExperienceComponent } from './experience/experience.component';
 import { WorkComponent } from './work/work.component';
+import { SectionEndingComponent } from './section-ending/section-ending.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { WorkComponent } from './work/work.component';
     AboutComponent,
     ExperienceComponent,
     WorkComponent,
+    SectionEndingComponent
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@
 .work-section {
   background-color: #000;
   color: #f0f0f0;
-  padding: 3rem 1rem; /* generous vertical padding */
+  padding: 3rem 1rem;
 }
 
 .work-title {
@@ -29,77 +29,97 @@
   font-weight: 600;
   text-align: center;
   margin-top: 0.5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 8rem;
   line-height: 1.2;
 }
 
-/* ===== 2) Container & Layout ===== */
-.work-container {
+/* ===== 2) Two‐Column Layout ===== */
+.work-columns {
+  display: flex;
+  gap: 3rem; /* horizontal gap between left & right */
   max-width: 90rem;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 6rem; /* vertical gap between items */
 }
 
-.work-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 4rem; /* horizontal gap between card & details */
+/* ===== 3) Left Column: Scrollable Cards ===== */
+.left-column {
+  flex: 0 0 40%; /* 40% width */
+  max-height: calc(100vh - 8rem); /* viewport height minus top heading space */
+  overflow-y: auto;
+  padding-right: 1rem; /* give room for hidden scrollbar */
+
+  /* Prevent bounce and allow scrolling to bubble to page */
+  overscroll-behavior: contain;
 }
 
-/* ===== 3) Left Card Wrapper ===== */
+/* Hide the native scrollbar (cross‐browser) */
+.left-column::-webkit-scrollbar {
+  display: none;
+}
+
+.left-column {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Each card wrapper is positioned relative so we can add highlight styling */
 .work-card-wrapper {
   position: relative;
-  flex: 0 0 40%; /* 40% width */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 3rem; /* vertical gap between cards */
 }
 
-/* The gradient “frame” behind each card */
+/* Slight scale/glow on the active card */
+.work-card-wrapper.active-card .work-card {
+  transform: scale(1.02);
+  box-shadow: 0 10px 28px rgba(79, 70, 229, 0.4);
+}
+
+/* ===== 4) Gradient Frame Behind Each Card ===== */
 .gradient-frame {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(236,72,153,0.6), rgba(79,70,229,0.6));
+  background: linear-gradient(
+    180deg,
+    rgba(236, 72, 153, 0.6),
+    rgba(79, 70, 229, 0.6)
+  );
   border-radius: 1rem;
   filter: blur(12px);
   z-index: 0;
 }
 
-/* ===== 4) Actual Card ===== */
+/* ===== 5) Work Card Itself ===== */
 .work-card {
   position: relative;
-  background-color: #1f1f2e; /* contrasted but still dark */
+  background-color: #1f1f2e;
   border-radius: 1rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-  z-index: 1; /* sits above gradient-frame */
+  z-index: 1; /* sits above the gradient frame */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Lift on hover */
 .work-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8);
 }
 
-/* Summary portion */
+/* ===== 6) Card Summary ===== */
 .card-summary {
   padding: 2rem;
   font-size: 1rem;
   line-height: 1.6;
   color: #e0e0e0;
-  background-color: #181824; /* slightly lighter panel */
+  background-color: #181824;
   border-bottom: 1px solid #333;
 }
 
-/* Image portion */
+/* ===== 7) Card Image ===== */
 .card-image {
   position: relative;
   background-color: #12121b;
@@ -117,13 +137,11 @@
   transition: transform 0.3s ease;
 }
 
-/* Scale on hover */
 .card-image:hover img {
   transform: scale(1.08);
   cursor: pointer;
 }
 
-/* Hover overlay */
 .card-image .hover-overlay {
   position: absolute;
   top: 0;
@@ -150,27 +168,33 @@
   pointer-events: auto;
 }
 
-/* ===== 5) Right Details ===== */
-.work-details {
+/* ===== 8) Right Column: Sticky Details ===== */
+.right-column {
   flex: 1; /* 60% width */
-  display: flex;
-  flex-direction: column;
-  color: #f0f0f0;
+  position: relative;
 }
 
+.sticky-details {
+  position: sticky;
+  top: 5rem; /* sticks 5rem below viewport top */
+  padding-bottom: 2rem;
+}
+
+/* Project Name */
 .project-name {
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
+/* Dates */
 .project-dates {
   font-size: 0.875rem;
   color: #aaa;
   margin-bottom: 1rem;
 }
 
-/* Company + “Associated with …” */
+/* Company & “Associated with” */
 .company-info {
   display: flex;
   align-items: center;
@@ -195,23 +219,36 @@
   color: #ccc;
 }
 
-/* ===== 6) Description ===== */
+/* ===== 9) Description with Star Bullets ===== */
 .project-desc {
-  flex: 1;
   margin-bottom: 1.5rem;
 }
 
-.project-desc .desc-paragraph {
-  white-space: pre-wrap;
-  margin-bottom: 1.25rem;
+.desc-paragraph {
+  margin-bottom: 1rem;
   font-size: 0.95rem;
   line-height: 1.6;
   color: #e0e0e0;
+  white-space: pre-wrap;
 }
 
-/* ===== 7) Skills as Chips (with SVG icons) ===== */
+.bullet-line {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.bullet-line::before {
+  content: '★';
+  color: #ec4899; /* pink star */
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ===== 10) Skills as Chips (with SVG icons) ===== */
 .skills-chips {
-  margin-top: auto; /* push chips to bottom if content is short */
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -222,7 +259,7 @@
   align-items: center;
   background-color: #222;
   color: #f0f0f0;
-  padding: 0.5rem 1rem; /* roomy “pill” shape */
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-size: 0.9rem;
   white-space: nowrap;
@@ -235,55 +272,67 @@
   cursor: pointer;
 }
 
-/* Make the SVG icon inside the chip line up nicely */
 .skill-icon {
-  width: 1rem;       /* roughly 16px */
+  width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
-  filter: brightness(1.2); /* slightly brighten so it stands out */
+  filter: brightness(1.2);
 }
 
-/* ===== 8) Responsive Adjustments ===== */
-/* Tablet (≤1023px): stack items vertically */
+/* ===== 11) Responsive Adjustments ===== */
 @media (max-width: 1023px) {
-  .work-item {
+  /* Stack left + right vertically */
+  .work-columns {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
-  .work-card-wrapper,
-  .work-details {
-    width: 100%;
+
+  .left-column {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .sticky-details {
+    position: static;
+    top: auto;
   }
 }
 
-/* Mobile (≤767px): shrink spacing and fonts */
 @media (max-width: 767px) {
   .work-section {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
   }
+
   .work-subtitle {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
+
   .project-name {
     font-size: 1.5rem;
   }
+
   .project-dates {
     font-size: 0.875rem;
   }
+
   .desc-paragraph {
     font-size: 0.9rem;
   }
+
   .card-summary {
     padding: 1rem;
     font-size: 0.95rem;
   }
+
   .card-image {
     padding: 1rem;
   }
+
   .skill-chip {
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
   }
+
   .skill-icon {
     width: 0.875rem;
     height: 0.875rem;

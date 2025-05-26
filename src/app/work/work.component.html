@@ -1,3 +1,4 @@
+<!-- src/app/work/work.component.html -->
 <section class="work-section">
   <!-- ===== TOP PADDING & TITLES ===== -->
   <h2 class="work-title">work</h2>
@@ -6,55 +7,76 @@
     <span class="italic-gradient">Journey</span>
   </h3>
 
-  <div class="work-container">
-    <!-- Loop through each project entry -->
-    <div class="work-item" *ngFor="let entry of workEntries">
-      <!-- ===== LEFT CARD (40% width) ===== -->
-      <div class="work-card-wrapper">
-        <!-- Gradient frame behind the card -->
-        <div class="gradient-frame"></div>
-
-        <!-- Actual card content, sits on top of the frame -->
-        <div class="work-card">
-          <!-- Summary block with padding -->
-          <div class="card-summary">
-            {{ entry.summary }}
-          </div>
-
-          <!-- Image block (with overlay) -->
-          <div class="card-image">
-            <img [src]="entry.imageUrl" alt="{{ entry.projectName }}" />
-            <div class="hover-overlay">Click for more details</div>
+  <div class="work-columns">
+    <!-- ===== LEFT: Scrollable Card List ===== -->
+    <div class="left-column" #leftCol>
+      <ng-container *ngFor="let entry of workEntries; let i = index">
+        <div
+          class="work-card-wrapper"
+          #cardRef
+          [class.active-card]="i === currentIndex"
+        >
+          <div class="gradient-frame"></div>
+          <div class="work-card">
+            <div class="card-summary">
+              {{ entry.summary }}
+            </div>
+            <div class="card-image">
+              <img [src]="entry.imageUrl" alt="{{ entry.projectName }}" />
+              <div class="hover-overlay">Click for more details</div>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
+    </div>
 
-      <!-- ===== RIGHT DETAILS (60% width) ===== -->
-      <div class="work-details">
-        <!-- Project Name -->
-        <div class="project-name">{{ entry.projectName }}</div>
-
-        <!-- Dates -->
-        <div class="project-dates">{{ entry.dates }}</div>
-
-        <!-- Company & “Associated with …” -->
+    <!-- ===== RIGHT: Sticky Details Panel ===== -->
+    <!-- ★ Added (wheel) handler here to forward scroll to left-column ★ -->
+    <div class="right-column" (wheel)="onRightColumnWheel($event)">
+      <div class="work-details sticky-details">
+        <div class="project-name">
+          {{ workEntries[currentIndex].projectName }}
+        </div>
+        <div class="project-dates">
+          {{ workEntries[currentIndex].dates }}
+        </div>
         <div class="company-info">
           <div class="company-logo">
             <div class="logo-placeholder">Logo</div>
           </div>
-          <div class="company-text">{{ entry.relation }}</div>
+          <div class="company-text">
+            {{ workEntries[currentIndex].relation }}
+          </div>
         </div>
 
-        <!-- Full Description / Roles & Responsibilities -->
         <div class="project-desc">
-          <ng-container *ngFor="let para of entry.description.trim().split('\n\n')">
-            <p class="desc-paragraph">{{ para }}</p>
+          <ng-container
+            *ngFor="
+              let line of workEntries[currentIndex].description.trim().split(
+                '\n'
+              )
+            "
+          >
+            <p
+              class="desc-paragraph"
+              *ngIf="!line.trim().startsWith('•')"
+            >
+              {{ line.trim() }}
+            </p>
+            <p
+              class="desc-paragraph bullet-line"
+              *ngIf="line.trim().startsWith('•')"
+            >
+              {{ line.trim().substring(1).trim() }}
+            </p>
           </ng-container>
         </div>
 
-        <!-- Skills as animated chips with actual icons -->
         <div class="skills-chips">
-          <span class="skill-chip" *ngFor="let s of entry.skills">
+          <span
+            class="skill-chip"
+            *ngFor="let s of workEntries[currentIndex].skills"
+          >
             <img [src]="s.icon" alt="{{ s.name }}" class="skill-icon" />
             {{ s.name }}
           </span>
@@ -62,4 +84,5 @@
       </div>
     </div>
   </div>
+  <br /><br /><br /><br /><br />
 </section>

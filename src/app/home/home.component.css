@@ -23,3 +23,12 @@ html {
 .social-icon:hover {
   filter: invert(1) brightness(1.5);
 }
+
+.home-wrapper {
+  min-height: 100vh;         /* ensure it fills the viewport vertically */
+  background-color: #000;
+  color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  /* You can keep any padding/margins you need inside here */
+}
