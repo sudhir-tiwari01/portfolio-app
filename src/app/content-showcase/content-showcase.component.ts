@@ -6,6 +6,12 @@ interface Technology {
   icon: string;
 }
 
+interface FloatingCard {
+  title: string;
+  subtitle: string;
+  animationDelay: number;
+}
+
 @Component({
   selector: 'app-content-showcase',
   templateUrl: './content-showcase.component.html',
@@ -15,6 +21,40 @@ export class ContentShowcaseComponent implements OnInit {
 
   // Email copy state
   emailCopied: boolean = false;
+
+  // Dynamic floating cards for SaaS showcase
+  floatingCards: FloatingCard[] = [
+    {
+      title: 'Authentication',
+      subtitle: 'Secure user access',
+      animationDelay: 0
+    },
+    {
+      title: 'API Gateway',
+      subtitle: 'Request routing & management',
+      animationDelay: 0
+    },
+    {
+      title: 'Payment System',
+      subtitle: 'Subscription billing',
+      animationDelay: 0
+    },
+    {
+      title: 'Analytics',
+      subtitle: 'Real-time insights',
+      animationDelay: 0
+    },
+    {
+      title: 'Design System',
+      subtitle: 'UI consistency',
+      animationDelay: 0
+    },
+    {
+      title: 'Deployment',
+      subtitle: 'CI/CD pipeline',
+      animationDelay: 0
+    }
+  ];
 
   constructor(private router: Router) { }
 
@@ -67,6 +107,7 @@ export class ContentShowcaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.splitTechnologiesIntoRows();
+    this.calculateAnimationDelays();
   }
 
   private splitTechnologiesIntoRows(): void {
@@ -80,6 +121,33 @@ export class ContentShowcaseComponent implements OnInit {
         this.techRow3.push(this.technologies[i]);
       }
     }
+  }
+
+  private calculateAnimationDelays(): void {
+    // Automatically calculate animation delays for floating cards
+    // Each card appears 3 seconds after the previous one
+    this.floatingCards.forEach((card, index) => {
+      card.animationDelay = -(index * 3);
+    });
+  }
+
+  // Helper method to add new floating cards dynamically
+  addFloatingCard(title: string, subtitle: string): void {
+    const newCard: FloatingCard = {
+      title,
+      subtitle,
+      animationDelay: -(this.floatingCards.length * 3)
+    };
+    this.floatingCards.push(newCard);
+  }
+
+  // Example method to demonstrate adding cards dynamically
+  // You can call this method or directly modify the floatingCards array
+  addExampleCards(): void {
+    // Example: Add new cards
+    this.addFloatingCard('Machine Learning', 'AI-powered features');
+    this.addFloatingCard('Real-time Chat', 'Instant communication');
+    this.addFloatingCard('File Storage', 'Cloud-based storage');
   }
 
   bookCall(): void {

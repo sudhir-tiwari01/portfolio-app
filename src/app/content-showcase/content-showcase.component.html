@@ -239,43 +239,39 @@
       </div>
     </div>
 
-    <!-- Card 4: About/Skills Card -->
-    <div class="about-skills-card card">
+    <!-- Card 4: SaaS Application Showcase -->
+    <div class="saas-showcase-card card">
       <div class="card-content">
-        <div class="skills-header">
-          <h3 class="skills-title">Websites that stand out and make a difference</h3>
+        <!-- Floating background cards - Dynamic -->
+        <div class="floating-cards-container">
+          <div
+            *ngFor="let card of floatingCards; let i = index"
+            class="floating-card"
+            [style.animation-delay.s]="card.animationDelay"
+          >
+            <div class="card-title">{{ card.title }}</div>
+            <div class="card-subtitle">{{ card.subtitle }}</div>
+          </div>
         </div>
 
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h4>Frontend</h4>
-            <div class="skill-list">
-              <span>Angular</span>
-              <span>React</span>
-              <span>TypeScript</span>
-              <span>Tailwind CSS</span>
-            </div>
+        <!-- Main content overlay -->
+        <div class="saas-content-overlay">
+          <div class="saas-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <rect x="9" y="9" width="6" height="6"/>
+              <path d="m15 3-6 6"/>
+              <path d="m21 3-6 6"/>
+              <path d="m3 9 6 6"/>
+              <path d="m3 15 6 6"/>
+            </svg>
           </div>
-
-          <div class="skill-category">
-            <h4>Backend</h4>
-            <div class="skill-list">
-              <span>Node.js</span>
-              <span>Java Spring Boot</span>
-              <span>Express.js</span>
-              <span>PostgreSQL</span>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h4>DevOps & Cloud</h4>
-            <div class="skill-list">
-              <span>AWS</span>
-              <span>Docker</span>
-              <span>Azure</span>
-              <span>GitHub</span>
-            </div>
-          </div>
+          <h3 class="saas-title">The Inside Scoop</h3>
+          <h2 class="saas-subtitle">Currently building a SaaS Application</h2>
+          <p class="saas-description">
+            Architecting a comprehensive platform with microservices, real-time analytics,
+            and scalable infrastructure for modern businesses.
+          </p>
         </div>
       </div>
     </div>
