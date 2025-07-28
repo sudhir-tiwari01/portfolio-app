@@ -1,3 +1,15 @@
+/* src/app/home/home.component.css */
+
+/* ===== 1) Base Container & Layout ===== */
+.home-wrapper {
+  background-color: #000; /* Pure black background - matching about component */
+  color: #f0f0f0; /* Very light gray text - matching about component */
+  min-height: 100vh; /* At least full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hide scrollbar globally */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -5,7 +17,8 @@ html {
   overflow: scroll;
   overflow-x: hidden;
 }
-/* SOCIAL ICONS: using SVGs */
+
+/* ===== 2) Social Icons Styling ===== */
 .social-icons {
   display: flex;
   gap: 1rem; /* 16px between icons */
@@ -22,13 +35,4 @@ html {
 
 .social-icon:hover {
   filter: invert(1) brightness(1.5);
-}
-
-.home-wrapper {
-  min-height: 100vh;         /* ensure it fills the viewport vertically */
-  background-color: #000;
-  color: #f0f0f0;
-  display: flex;
-  flex-direction: column;
-  /* You can keep any padding/margins you need inside here */
 }

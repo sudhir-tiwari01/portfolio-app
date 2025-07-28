@@ -25,9 +25,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AboutComponent } from './about/about.component';
 import {ContactService} from "./services/contact.service";
+import { ContactDialogService } from "./services/contact-dialog.service";
 import { ExperienceComponent } from './experience/experience.component';
 import { WorkComponent } from './work/work.component';
 import { SectionEndingComponent } from './section-ending/section-ending.component';
+import { ContentShowcaseComponent } from './content-showcase/content-showcase.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { SectionEndingComponent } from './section-ending/section-ending.componen
     AboutComponent,
     ExperienceComponent,
     WorkComponent,
-    SectionEndingComponent
+    SectionEndingComponent,
+    ContentShowcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { SectionEndingComponent } from './section-ending/section-ending.componen
     MatFormFieldModule,
     MatDialogModule
   ],
-  providers: [ContactService],
+  providers: [ContactService, ContactDialogService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

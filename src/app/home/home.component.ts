@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {ContactDialogComponent} from "../contact-dialog/contact-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ContactDialogService } from '../services/contact-dialog.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +8,12 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar) {}
+  constructor(
+    private contactDialogService: ContactDialogService,
+    private snackBar: MatSnackBar
+  ) {}
 
   public email: string = "sudhirtiwari1998@gmail.com";
-  public showModal: boolean = false;
 
   copyEmail() {
     navigator.clipboard.writeText(this.email).then(() => {
@@ -23,18 +24,6 @@ export class HomeComponent {
   }
 
   openContactDialog(): void {
-    this.dialog.open(ContactDialogComponent, {
-      width: "500px",
-      panelClass: "custom-dialog-container",
-      // data: { any data you want to pass into the dialog }
-    });
-  }
-
-  openModal() {
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
+    this.contactDialogService.openContactDialog();
   }
 }

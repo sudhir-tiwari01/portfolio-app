@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { CalendarOptions } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -9,7 +9,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   templateUrl: "./more.component.html",
   styleUrls: ["./more.component.css"],
 })
-export class MoreComponent implements OnInit {
+export class MoreComponent implements OnInit, OnDestroy, AfterViewInit {
   // FullCalendar options for monthly view
   monthCalendarOptions!: CalendarOptions;
 
@@ -45,6 +45,17 @@ export class MoreComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Reset component state to ensure we start fresh
+    this.resetComponentState();
+
+    // Scroll to top of the page to ensure calendar is visible
+    // Use setTimeout to ensure this happens after view rendering
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 0);
+
     // Configure the FullCalendar for a month view, disallowing past dates
     this.monthCalendarOptions = {
       plugins: [dayGridPlugin, interactionPlugin],
@@ -60,6 +71,31 @@ export class MoreComponent implements OnInit {
       },
       height: "auto",
     };
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup if needed
+  }
+
+  ngAfterViewInit(): void {
+    // Additional scroll to top after view is fully initialized
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 50);
+  }
+
+  // Reset component to initial state
+  private resetComponentState(): void {
+    this.showTimeSlots = false;
+    this.showForm = false;
+    this.selectedDate = "";
+    this.selectedTime = "";
+    this.filteredSlots = [];
+    this.formSubject = "";
+    this.formMessage = "";
+    this.lastClickedEl = null;
   }
 
   // Generate every 30-minute slot between 08:00 and 19:30

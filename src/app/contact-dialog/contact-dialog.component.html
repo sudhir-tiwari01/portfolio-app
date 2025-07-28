@@ -1,111 +1,199 @@
-<!--&lt;!&ndash; src/app/contact-dialog/contact-dialog.component.html &ndash;&gt;-->
+<mat-dialog-content>
+  <!-- Tailwind‐styled inner box only (no fixed overlay) -->
+  <div
+    class="
+      bg-gray-900/90        /* dark background */
+      rounded-2xl           /* large rounded corners */
+      w-250               /* fill width set by open() */
+      text-white            /* white text inside */
+      relative              /* for absolute-positioning the “×” */
+      px-6 py-8             /* padding */
+      flex flex-col space-y-6
+    "
+  >
+    <!-- (a) Close “×” top‐right -->
+    <button
+      (click)="close()"
+      class="
+        absolute top-3 right-3
+        text-gray-400 hover:text-white
+        text-2xl
+      "
+      aria-label="Close"
+    >
+      &times;
+    </button>
 
-<!--<mat-card class="dialog-card">-->
-<!--  &lt;!&ndash; HEADER: Title + Social Icons &ndash;&gt;-->
-<!--  <mat-card-header class="dialog-header">-->
-<!--    <mat-card-title>Connect with Me</mat-card-title>-->
-<!--    <mat-card-subtitle class="header-icons">-->
-<!--      <a href="https://linkedin.com/in/yourprofile" target="_blank">-->
-<!--        <mat-icon svgIcon="linkedin" class="social-icon"></mat-icon>-->
-<!--      </a>-->
-<!--      <a href="https://github.com/yourusername" target="_blank">-->
-<!--        <mat-icon svgIcon="github" class="social-icon"></mat-icon>-->
-<!--      </a>-->
-<!--      <a href="https://twitter.com/yourhandle" target="_blank">-->
-<!--        <mat-icon svgIcon="twitter" class="social-icon"></mat-icon>-->
-<!--      </a>-->
-<!--    </mat-card-subtitle>-->
-<!--  </mat-card-header>-->
+    <!-- (b) Social icons row -->
+    <div class="flex justify-center gap-8 mt-2">
+      <!-- LinkedIn -->
+      <a
+        href="https://www.linkedin.com/in/sudhir-tiwari-a9656a159"
+        target="_blank"
+        aria-label="LinkedIn"
+        class="hover:text-blue-400"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 fill-current"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.381 1.11-2.5 2.48-2.5s2.48 1.119 2.48 2.5zm.02 4.5H2V21h3V8zm7 0h-2.9v13h3V14.4c0-3.016 3.94-3.26 3.94 0v6.6h3V13c0-5.047-5.988-4.86-6.04-2.994V8z"
+          />
+        </svg>
+      </a>
 
-<!--  &lt;!&ndash; TABS &ndash;&gt;-->
-<!--  <mat-tab-group class="dialog-tabs" mat-stretch-tabs>-->
-<!--    &lt;!&ndash; QUICK CONNECT TAB &ndash;&gt;-->
-<!--    <mat-tab label="Quick connect">-->
-<!--      <div class="tab-content">-->
-<!--        &lt;!&ndash; EMAIL CARD &ndash;&gt;-->
-<!--        <mat-card class="inner-card email-card">-->
-<!--          <div class="card-header email-header">-->
-<!--            <mat-icon>email</mat-icon>-->
-<!--            <span class="card-title">Email</span>-->
-<!--          </div>-->
-<!--          <div class="card-body">-->
-<!--            <p class="subtitle">hello@aayushbharti.in</p>-->
-<!--            <p class="note">Send me an email directly</p>-->
-<!--          </div>-->
-<!--          &lt;!&ndash; Removed align="end" and added class="full-width-button" on the button &ndash;&gt;-->
-<!--          <mat-card-actions class="card-actions">-->
-<!--            <button-->
-<!--              mat-flat-button-->
-<!--              color="primary"-->
-<!--              href="mailto:hello@aayushbharti.in"-->
-<!--              class="full-width-button"-->
-<!--            >-->
-<!--              Compose-->
-<!--            </button>-->
-<!--          </mat-card-actions>-->
-<!--        </mat-card>-->
+      <!-- GitHub -->
+      <a
+        href="https://github.com/sudhir-tiwari01"
+        target="_blank"
+        aria-label="GitHub"
+        class="hover:text-gray-100"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 fill-current"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.292 9.408 7.867 10.94.576.105.787-.25.787-.555 0-.276-.011-1.01-.017-1.982-3.202.697-3.88-1.542-3.88-1.542-.523-1.326-1.277-1.68-1.277-1.68-1.044-.714.08-.7.08-.7 1.154.08 1.763 1.185 1.763 1.185 1.026 1.758 2.692 1.25 3.346.956.104-.743.402-1.25.732-1.538-2.555-.292-5.244-1.277-5.244-5.68 0-1.255.453-2.283 1.192-3.087-.12-.293-.518-1.467.113-3.058 0 0 .973-.312 3.188 1.18.923-.257 1.915-.385 2.9-.39.985.005 1.977.133 2.902.39 2.212-1.492 3.182-1.18 3.182-1.18.634 1.591.237 2.765.117 3.058.744.804 1.188 1.833 1.188 3.087 0 4.415-2.694 5.385-5.26 5.674.414.357.783 1.06.783 2.138 0 1.543-.014 2.787-.014 3.17 0 .31.207.668.793.555C20.71 21.408 24 17.1 24 12c0-6.35-5.15-11.5-12-11.5z"
+          />
+        </svg>
+      </a>
 
-<!--        &lt;!&ndash; SCHEDULE CARD &ndash;&gt;-->
-<!--        <mat-card class="inner-card schedule-card">-->
-<!--          <div class="card-header schedule-header">-->
-<!--            <mat-icon>event</mat-icon>-->
-<!--            <span class="card-title">Schedule</span>-->
-<!--          </div>-->
-<!--          <div class="card-body">-->
-<!--            <p class="subtitle">Book a time slot</p>-->
-<!--            <p class="note">Book a call on my calendar</p>-->
-<!--          </div>-->
-<!--          &lt;!&ndash; Removed align="end" and added class="full-width-button" on the button &ndash;&gt;-->
-<!--          <mat-card-actions class="card-actions">-->
-<!--            <button-->
-<!--              mat-flat-button-->
-<!--              color="accent"-->
-<!--              (click)="window.open('https://calendly.com/your-calendly', '_blank')"-->
-<!--              class="full-width-button"-->
-<!--            >-->
-<!--              View-->
-<!--            </button>-->
-<!--          </mat-card-actions>-->
-<!--        </mat-card>-->
-<!--      </div>-->
-<!--    </mat-tab>-->
+      <!-- Twitter -->
+      <a
+        href="https://twitter.com/yourhandle"
+        target="_blank"
+        aria-label="Twitter"
+        class="hover:text-blue-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 fill-current"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M24 4.557a9.83 9.83 0 01-2.828.775 4.932 4.932 0 002.165-2.724c-.951.555-2.005.959-3.127 1.184a4.917 4.917 0 00-8.384 4.482A13.94 13.94 0 011.671 3.149 4.916 4.916 0 003.195 9.86a4.897 4.897 0 01-2.228-.616c-.054 2.28 1.581 4.415 3.949 4.89a4.935 4.935 0 01-2.224.085 4.918 4.918 0 004.588 3.417A9.867 9.867 0 010 19.54 13.945 13.945 0 007.548 22c9.142 0 14.307-7.721 13.995-14.646A9.936 9.936 0 0024 4.557z"
+          />
+        </svg>
+      </a>
+    </div>
 
-<!--    &lt;!&ndash; SEND A MESSAGE TAB (unchanged) &ndash;&gt;-->
-<!--    <mat-tab label="Send a message">-->
-<!--      <div class="tab-content message-content">-->
-<!--        <form class="message-form">-->
-<!--          <mat-form-field appearance="fill" class="full-width">-->
-<!--            <mat-label>Your Name</mat-label>-->
-<!--            <input matInput placeholder="John Doe" />-->
-<!--          </mat-form-field>-->
+    <!-- (c) “Quick Connect” heading -->
+    <h3 class="text-2xl font-sans font-semibold text-center mt-2">
+      Quick Connect
+    </h3>
 
-<!--          <mat-form-field appearance="fill" class="full-width">-->
-<!--            <mat-label>Your Email</mat-label>-->
-<!--            <input matInput type="email" placeholder="you@example.com" />-->
-<!--          </mat-form-field>-->
+    <!-- (d) Email & “Book a time slot” buttons -->
+    <div class="flex flex-col space-y-4 mt-4">
+      <!-- Email -->
+      <a
+        href="mailto:sudhirtiwari1998@gmail.com"
+        class="
+          relative inline-flex items-center justify-center
+          bg-purple-700/50
+          w-full
+          h-14
+          rounded-full
+          overflow-hidden
+          group
+          font-sans
+        "
+      >
+        <!-- Visible text + icon -->
+        <span
+          class="
+            relative z-10 flex items-center gap-3
+            transition-colors duration-300
+            group-hover:text-purple-700
+            text-white
+          "
+        >
+          📧 sudhirtiwari1998&#64;gmail.com
+          <span
+            class="
+              flex-shrink-0
+              w-9 h-9
+              bg-white text-purple-700
+              rounded-full
+              flex items-center justify-center
+              transition-transform duration-300
+              group-hover:scale-0
+            "
+          >
+            ➜
+          </span>
+        </span>
 
-<!--          <mat-form-field appearance="fill" class="full-width">-->
-<!--            <mat-label>Message</mat-label>-->
-<!--            <textarea-->
-<!--              matInput-->
-<!--              rows="4"-->
-<!--              placeholder="Hi! I’d like to connect…"-->
-<!--            ></textarea>-->
-<!--          </mat-form-field>-->
+        <!-- Expanding white background -->
+        <span
+          class="
+            absolute inset-0
+            bg-white
+            scale-x-0 origin-left
+            transition-transform duration-300
+            group-hover:scale-x-100
+          "
+        ></span>
+      </a>
 
-<!--          <div class="message-form-actions">-->
-<!--            <button mat-flat-button color="primary" type="submit">-->
-<!--              Send-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </mat-tab>-->
-<!--  </mat-tab-group>-->
+      <!-- Book a time slot -->
+      <button
+        (click)="bookTimeSlot()"
+        class="
+          relative inline-flex items-center justify-center
+          bg-purple-700/50
+          w-full
+          h-14
+          rounded-full
+          overflow-hidden
+          group
+          font-sans
+        "
+      >
+        <!-- Visible text + arrow -->
+        <span
+          class="
+            relative z-10 flex items-center gap-3
+            transition-colors duration-300
+            group-hover:text-purple-700
+            text-white
+          "
+        >
+          Book a time slot
+          <span
+            class="
+              flex-shrink-0
+              w-9 h-9
+              bg-white text-purple-700
+              rounded-full
+              flex items-center justify-center
+              transition-transform duration-300
+              group-hover:scale-0
+            "
+          >
+            ➜
+          </span>
+        </span>
 
-<!--  &lt;!&ndash; FOOTER: Availability Notice &ndash;&gt;-->
-<!--  <div class="dialog-footer">-->
-<!--    <mat-icon class="status-dot">fiber_manual_record</mat-icon>-->
-<!--    <span>Currently available for new opportunities</span>-->
-<!--  </div>-->
-<!--</mat-card>-->
+        <!-- Expanding white background -->
+        <span
+          class="
+            absolute inset-0
+            bg-white
+            scale-x-0 origin-left
+            transition-transform duration-300
+            group-hover:scale-x-100
+          "
+        ></span>
+      </button>
+    </div>
+
+    <!-- (e) Availability text -->
+    <p class="text-green-400 text-center text-sm mt-2">
+      ● Currently available for new opportunities
+    </p>
+  </div>
+</mat-dialog-content>

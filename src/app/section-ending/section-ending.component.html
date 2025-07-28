@@ -1,10 +1,8 @@
-<!-- section-ending.component.html -->
+﻿<!-- src/app/section-ending/section-ending.component.html -->
 <div class="section-ending">
-  <img
-    src="assets/images/sudhir-logo.png"
-    alt="Winged Logo"
-    class="logo-winged"
-  />
+  <div class="logo-winged sk-logo-circle">
+    <span class="sk-text">SK</span>
+  </div>
 
   <div class="main-heading-container">
     <h1 class="main-heading">
@@ -12,22 +10,36 @@
       LET'S MAKE IT <span class="highlight">HAPPEN!</span>
     </h1>
     <img
-      src="assets/images/open-to-work.jpeg"
+      src="assets/images/open-to-work.png"
       alt="Open to Work Badge"
       class="badge"
     />
   </div>
 
-  <button class="contact-button">
-    Get In Touch <span class="arrow">→</span>
+  <!-- "Get In Touch" button now calls openContactDialog() -->
+  <button
+    class="contact-button"
+    (click)="openContactDialog()"
+  >
+    <!-- Visible text + arrow -->
+    <span class="button-content">
+      Get In Touch
+      <span class="arrow-circle">
+        ➜
+      </span>
+    </span>
+
+    <!-- Expanding white background -->
+    <span class="expanding-bg"></span>
   </button>
 
   <p class="availability">
-    I'm available for <strong>full-time roles</strong> &
+    I'm available for <strong>full-time roles</strong> &amp;
     <span class="freelance">freelance projects</span>.
   </p>
 
   <p class="subtext">
-    I thrive on crafting dynamic web applications, and delivering seamless user experiences.
+    I thrive on crafting dynamic web applications, and delivering seamless user
+    experiences.
   </p>
 </div>

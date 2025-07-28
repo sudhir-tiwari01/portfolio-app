@@ -12,6 +12,35 @@
   z-index: 100;
 }
 
+/* New SK Logo Styles for Navbar */
+.navbar-logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo-circle {
+  width: 32px; /* Smaller size for navbar - same as original h-8 (32px) */
+  height: 32px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8); /* Same gradient as project card */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.navbar-logo-circle:hover {
+  transform: scale(1.05);
+}
+
+.navbar-logo-text {
+  font-size: 0.9rem; /* Smaller text for navbar */
+  font-weight: bold;
+  color: white;
+  user-select: none;
+}
+
 .logo {
   display: flex;
   align-items: center;

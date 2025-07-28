@@ -261,7 +261,7 @@ This platform provides efficient, secure, and scalable assessment workflows, del
       event.preventDefault();
       leftElement.scrollBy({
         top: event.deltaY,
-        behavior: 'smooth'
+        behavior: 'auto'
       });
     }
     // Otherwise, do nothing so the event bubbles to scroll the rest of the page

@@ -1,0 +1,297 @@
+<!-- Content Showcase Section -->
+<section class="content-showcase-section">
+  <div class="cards-container">
+
+    <!-- Card 1: Collaboration Card -->
+    <div class="collaboration-card card">
+      <div class="card-content">
+        <!-- Circular Profile Image -->
+        <div class="profile-circle">
+          <img
+            src="assets/images/about-folder/Profile Pic.jpg"
+            alt="Sudhir Profile"
+            class="profile-image"
+          />
+        </div>
+
+        <!-- Collaboration Text -->
+        <div class="collaboration-text">
+          <h3 class="collaboration-title">Collaboration</h3>
+          <p class="collaboration-description">
+            I prioritize client collaboration, fostering open communication across teams and time zones
+          </p>
+        </div>
+
+        <!-- Book a Call Button (appears on hover) -->
+        <div class="book-call-section">
+          <button class="book-call-btn" (click)="bookCall()">
+            Book a call
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Enhanced Timezone Availability Card -->
+    <div class="timezone-card card">
+      <div class="card-content">
+        <div class="timezone-header">
+          <h3 class="timezone-card-title">Global Availability</h3>
+          <p class="timezone-subtitle">Flexible across time zones and work modes</p>
+        </div>
+
+        <!-- Work Mode Selection -->
+        <div class="work-mode-section">
+          <h4 class="work-mode-title">Work Preference</h4>
+          <div class="work-mode-options">
+            <button
+              class="work-mode-btn"
+              [class.active]="selectedWorkMode === 'remote'"
+              (click)="selectWorkMode('remote')"
+            >
+              <span class="mode-icon">🌐</span>
+              <span>Remote</span>
+            </button>
+            <button
+              class="work-mode-btn"
+              [class.active]="selectedWorkMode === 'hybrid'"
+              (click)="selectWorkMode('hybrid')"
+            >
+              <span class="mode-icon">🏢</span>
+              <span>Hybrid</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Enhanced World Map -->
+        <div class="world-map-container">
+          <div class="world-map">
+            <svg viewBox="0 0 500 250" class="map-svg">
+              <!-- Dotted background pattern -->
+              <defs>
+                <pattern id="worldDots" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <circle cx="4" cy="4" r="1" fill="rgba(139, 92, 246, 0.15)"/>
+                </pattern>
+
+                <!-- Glowing effect for active markers -->
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Background with dots -->
+              <rect width="500" height="250" fill="url(#worldDots)"/>
+
+              <!-- Stylized continents -->
+              <!-- North America -->
+              <path d="M80,60 Q100,45 130,55 Q160,50 180,60 Q190,70 185,85 Q170,95 150,90 Q120,95 100,85 Q80,75 80,60Z"
+                    fill="rgba(59, 130, 246, 0.1)" stroke="rgba(59, 130, 246, 0.3)" stroke-width="1"/>
+
+              <!-- Europe -->
+              <path d="M220,50 Q240,45 260,50 Q280,48 290,55 Q295,65 290,75 Q280,80 270,78 Q250,80 235,75 Q220,70 220,50Z"
+                    fill="rgba(34, 211, 153, 0.1)" stroke="rgba(34, 211, 153, 0.3)" stroke-width="1"/>
+
+              <!-- Asia -->
+              <path d="M300,45 Q350,40 400,50 Q430,55 440,70 Q445,85 435,95 Q420,100 400,95 Q370,100 340,90 Q310,85 300,70 Q295,55 300,45Z"
+                    fill="rgba(245, 158, 11, 0.1)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
+
+              <!-- Connection lines between locations -->
+              <path d="M130,75 Q200,60 270,65 Q350,70 380,80"
+                    stroke="rgba(139, 92, 246, 0.2)" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+
+              <!-- Location markers with enhanced design -->
+              <!-- USA/Canada -->
+              <g class="location-group usa-marker" [class.active]="isTimezoneAvailable('usa')">
+                <circle cx="130" cy="75" r="6" fill="#3b82f6" opacity="0.3"/>
+                <circle cx="130" cy="75" r="4" fill="#3b82f6" filter="url(#glow)"/>
+                <text x="130" y="95" text-anchor="middle" class="location-label">USA</text>
+              </g>
+
+              <!-- UK/Europe -->
+              <g class="location-group uk-marker" [class.active]="isTimezoneAvailable('uk')">
+                <circle cx="270" cy="65" r="6" fill="#34d399" opacity="0.3"/>
+                <circle cx="270" cy="65" r="4" fill="#34d399" filter="url(#glow)"/>
+                <text x="270" y="85" text-anchor="middle" class="location-label">UK</text>
+              </g>
+
+              <!-- India/Asia -->
+              <g class="location-group india-marker" [class.active]="isTimezoneAvailable('india')">
+                <circle cx="380" cy="80" r="6" fill="#f59e0b" opacity="0.3"/>
+                <circle cx="380" cy="80" r="4" fill="#f59e0b" filter="url(#glow)"/>
+                <text x="380" y="100" text-anchor="middle" class="location-label">India</text>
+              </g>
+
+              <!-- Pulse animation for active markers -->
+              <style>
+                .location-group.active circle:first-child {
+                  animation: pulse 2s infinite;
+                }
+                @keyframes pulse {
+                  0% { r: 6; opacity: 0.3; }
+                  50% { r: 8; opacity: 0.1; }
+                  100% { r: 6; opacity: 0.3; }
+                }
+              </style>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Available Timezones -->
+        <div class="available-timezones">
+          <h4 class="available-title">Available for {{ selectedWorkMode }} work:</h4>
+          <div class="timezone-badges">
+            <div
+              *ngFor="let timezone of availableTimezones"
+              class="timezone-badge"
+              [ngClass]="timezone.code"
+            >
+              <span class="timezone-flag">{{ timezone.flag }}</span>
+              <div class="timezone-info">
+                <span class="timezone-name">{{ timezone.name }}</span>
+                <span class="timezone-time">{{ timezone.time }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Technologies Card -->
+    <div class="technologies-card card">
+      <div class="card-content">
+        <div class="tech-header">
+          <h3 class="tech-title">Passionate about cutting-edge technologies</h3>
+          <div class="tech-badges">
+            <span class="tech-badge primary">Motion</span>
+            <span class="tech-badge secondary">Sanity</span>
+            <span class="tech-badge tertiary">Contentful</span>
+          </div>
+        </div>
+
+        <!-- Technology Icons Floating Animation -->
+        <div class="tech-container">
+
+          <!-- Row 1 -->
+          <div class="tech-row tech-row-1">
+            <div class="tech-items">
+              <div *ngFor="let tech of techRow1" class="tech-item">
+                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <span class="tech-name">{{ tech.name }}</span>
+              </div>
+              <!-- Duplicate for seamless loop -->
+              <div *ngFor="let tech of techRow1" class="tech-item">
+                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <span class="tech-name">{{ tech.name }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="tech-row tech-row-2">
+            <div class="tech-items">
+              <div *ngFor="let tech of techRow2" class="tech-item">
+                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <span class="tech-name">{{ tech.name }}</span>
+              </div>
+              <!-- Duplicate for seamless loop -->
+              <div *ngFor="let tech of techRow2" class="tech-item">
+                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <span class="tech-name">{{ tech.name }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="tech-row tech-row-3">
+            <div class="tech-items">
+              <div *ngFor="let tech of techRow3" class="tech-item">
+                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <span class="tech-name">{{ tech.name }}</span>
+              </div>
+              <!-- Duplicate for seamless loop -->
+              <div *ngFor="let tech of techRow3" class="tech-item">
+                <img [src]="tech.icon" [alt]="tech.name" class="tech-icon">
+                <span class="tech-name">{{ tech.name }}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Project Work Card -->
+    <div class="project-work-card card">
+      <div class="card-content">
+        <div class="project-header">
+          <div class="logo-section">
+            <div class="logo-circle">
+              <span class="logo-text">SB</span>
+            </div>
+          </div>
+          <h3 class="project-title">Let's work together on your next project</h3>
+        </div>
+
+        <div class="contact-info">
+          <div class="email-section">
+            <span class="email-icon">✉️</span>
+            <span class="email-text">sudhirtiwari1998&#64;gmail.com</span>
+          </div>
+        </div>
+
+        <div class="project-details">
+          <h4 class="details-title">The Inside Scoop</h4>
+          <p class="details-text">Currently building a SaaS Application</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: About/Skills Card -->
+    <div class="about-skills-card card">
+      <div class="card-content">
+        <div class="skills-header">
+          <h3 class="skills-title">Websites that stand out and make a difference</h3>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Frontend</h4>
+            <div class="skill-list">
+              <span>Angular</span>
+              <span>React</span>
+              <span>TypeScript</span>
+              <span>Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h4>Backend</h4>
+            <div class="skill-list">
+              <span>Node.js</span>
+              <span>Java Spring Boot</span>
+              <span>Express.js</span>
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h4>DevOps & Cloud</h4>
+            <div class="skill-list">
+              <span>AWS</span>
+              <span>Docker</span>
+              <span>Azure</span>
+              <span>GitHub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

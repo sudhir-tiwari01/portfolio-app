@@ -1,12 +1,7 @@
 /* styles.scss */
 .app-gradient-wrapper {
-  /* This is the one-and-only gradient, from deep purple → mid → black */
-  background: linear-gradient(
-    to bottom,
-    #2c004e 0%,
-    #1a002d 40%,
-    #0e0b17 100%
-  );
+  /* Consistent black background to match all components */
+  background-color: #000;
   display: flex;
   flex-direction: column;
 }

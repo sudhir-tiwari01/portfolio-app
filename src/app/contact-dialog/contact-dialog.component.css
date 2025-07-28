@@ -171,3 +171,86 @@ mat-card-actions button {
   margin-right: 6px;
 }
 
+/* src/app/contact-dialog/contact-dialog.component.css */
+
+.dialog-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.social-icons-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-link {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.social-link:hover {
+  color: #a259ff;
+}
+
+.connect-heading {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.dialog-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.dialog-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(118, 90, 251, 0.7);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.dialog-btn:hover {
+  background: rgba(118, 90, 251, 1);
+}
+
+.email-btn {
+  width: 100%;
+}
+
+.schedule-btn {
+  width: 100%;
+}
+
+.footer-availability {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #69f0ae;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+.status-dot {
+  font-size: 1rem;
+  color: #69f0ae;
+}

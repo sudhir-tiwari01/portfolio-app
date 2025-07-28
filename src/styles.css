@@ -1,6 +1,72 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;/* You can add global styles to this file, and also import other style files */
+@tailwind utilities; /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  background-color: #000; /* Ensure consistent black background */
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Custom Dialog Styles - Remove all white borders */
+.custom-dialog-container .mat-dialog-container,
+.custom-dialog-container .mat-mdc-dialog-container,
+.no-border-dialog .mat-dialog-container,
+.no-border-dialog .mat-mdc-dialog-container,
+.mat-dialog-container,
+.mat-mdc-dialog-container {
+  padding: 0 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.custom-backdrop {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Remove any white borders from Material Dialog */
+.mat-dialog-content,
+.mat-mdc-dialog-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Target the dialog overlay specifically */
+.cdk-overlay-pane {
+  border: none !important;
+}
+
+/* Override Angular Material dialog surface */
+.mat-mdc-dialog-surface,
+.mat-dialog-surface {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Additional aggressive targeting for all dialog elements */
+.no-border-dialog * {
+  border: none !important;
+  outline: none !important;
+}
+
+.no-border-dialog .mat-mdc-dialog-surface,
+.no-border-dialog .mat-dialog-surface,
+.no-border-dialog .mat-mdc-dialog-container,
+.no-border-dialog .mat-dialog-container {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
