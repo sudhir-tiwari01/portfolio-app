@@ -2,82 +2,104 @@
 <section class="content-showcase-section">
   <div class="cards-container">
 
-    <!-- Card 1: Collaboration Card -->
+    <!-- Card 1: Enhanced Collaboration Card -->
     <div class="collaboration-card card">
       <div class="card-content">
-        <!-- Circular Profile Image -->
-        <div class="profile-circle">
-          <img
-            src="assets/images/about-folder/Profile Pic.jpg"
-            alt="Sudhir Profile"
-            class="profile-image"
-          />
+        <!-- Background floating circles -->
+        <div class="floating-circles">
+          <div class="circle circle-1"></div>
+          <div class="circle circle-2"></div>
+          <div class="circle circle-3"></div>
+          <div class="circle circle-4"></div>
+          <div class="circle circle-5"></div>
         </div>
 
-        <!-- Collaboration Text -->
-        <div class="collaboration-text">
-          <h3 class="collaboration-title">Collaboration</h3>
-          <p class="collaboration-description">
-            I prioritize client collaboration, fostering open communication across teams and time zones
-          </p>
+        <!-- Collaborative Partners (floating on hover) -->
+        <div class="collaboration-partners">
+          <div
+            *ngFor="let partner of collaborativePartners.slice(0, 5); let i = index"
+            class="partner-avatar floating-partner"
+            [style.animation-delay.ms]="i * 200"
+            [ngClass]="'partner-' + (i + 1)"
+          >
+            <span class="partner-initials">{{ getInitials(partner.name) }}</span>
+          </div>
         </div>
 
-        <!-- Book a Call Button (appears on hover) -->
-        <div class="book-call-section">
-          <button class="book-call-btn" (click)="bookCall()">
-            Book a call
-            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+        <!-- Left side content -->
+        <div class="left-content">
+          <!-- Collaboration icon -->
+          <div class="collaboration-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-          </button>
-        </div>
-      </div>
-    </div>
+          </div>
 
-    <!-- Card 2: Enhanced Timezone Availability Card -->
-    <div class="timezone-card card">
-      <div class="card-content">
-        <div class="timezone-header">
-          <h3 class="timezone-card-title">Global Availability</h3>
-          <p class="timezone-subtitle">Flexible across time zones and work modes</p>
-        </div>
+          <!-- Title -->
+          <h3 class="collaboration-title">Collaboration</h3>
 
-        <!-- Work Mode Selection -->
-        <div class="work-mode-section">
-          <h4 class="work-mode-title">Work Preference</h4>
-          <div class="work-mode-options">
-            <button
-              class="work-mode-btn"
-              [class.active]="selectedWorkMode === 'remote'"
-              (click)="selectWorkMode('remote')"
-            >
-              <span class="mode-icon">🌐</span>
-              <span>Remote</span>
-            </button>
-            <button
-              class="work-mode-btn"
-              [class.active]="selectedWorkMode === 'hybrid'"
-              (click)="selectWorkMode('hybrid')"
-            >
-              <span class="mode-icon">🏢</span>
-              <span>Hybrid</span>
+          <!-- Description -->
+          <p class="collaboration-description">
+            I prioritize client collaboration, fostering open communication
+          </p>
+
+          <!-- Book a Call Button (appears on hover below description) -->
+          <div class="book-call-section">
+            <button class="book-call-btn" (click)="bookCall()">
+              <span>Book a call</span>
+              <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
             </button>
           </div>
         </div>
 
-        <!-- Enhanced World Map -->
-        <div class="world-map-container">
-          <div class="world-map">
-            <svg viewBox="0 0 400 180" class="map-svg">
-              <!-- Dotted background pattern -->
+        <!-- Center main profile image -->
+        <div class="center-profile">
+          <div class="main-profile-circle">
+            <img src="assets/images/about-folder/Profile Pic.jpg" alt="Sudhir Tiwari" class="profile-image">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Card 2: Global Availability Card -->
+    <div class="timezone-card card">
+      <div class="card-content">
+        <!-- Gradient Header -->
+        <div class="global-header">
+          <h3 class="global-title">
+            I'm very flexible with time
+            <span class="gradient-text">zone communications</span>
+          </h3>
+        </div>
+
+        <!-- Animated Globe Container -->
+        <div class="globe-container">
+          <!-- Globe SVG with animated dots -->
+          <div class="animated-globe">
+            <svg viewBox="0 0 300 300" class="globe-svg">
+              <!-- Globe definitions -->
               <defs>
-                <pattern id="worldDots" patternUnits="userSpaceOnUse" width="6" height="6">
-                  <circle cx="3" cy="3" r="0.8" fill="rgba(139, 92, 246, 0.2)"/>
+                <!-- Globe gradient -->
+                <radialGradient id="globeGradient" cx="0.3" cy="0.3">
+                  <stop offset="0%" stop-color="rgba(59, 130, 246, 0.8)"/>
+                  <stop offset="70%" stop-color="rgba(59, 130, 246, 0.4)"/>
+                  <stop offset="100%" stop-color="rgba(59, 130, 246, 0.1)"/>
+                </radialGradient>
+
+                <!-- Dot pattern for globe surface -->
+                <pattern id="globeDots" patternUnits="userSpaceOnUse" width="8" height="8">
+                  <circle cx="4" cy="4" r="1" fill="rgba(255, 255, 255, 0.3)"/>
                 </pattern>
 
-                <!-- Glowing effect for active markers -->
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <!-- Glow effect -->
+                <filter id="globeGlow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
                   <feMerge>
                     <feMergeNode in="coloredBlur"/>
                     <feMergeNode in="SourceGraphic"/>
@@ -85,67 +107,136 @@
                 </filter>
               </defs>
 
-              <!-- Background with dots -->
-              <rect width="400" height="180" fill="url(#worldDots)"/>
+              <!-- Main globe circle -->
+              <circle
+                cx="150"
+                cy="150"
+                r="130"
+                fill="url(#globeGradient)"
+                stroke="rgba(255, 255, 255, 0.2)"
+                stroke-width="2"
+                filter="url(#globeGlow)"
+              />
 
-              <!-- Simplified continents -->
-              <!-- North America -->
-              <path d="M60,50 Q80,35 110,45 Q140,40 160,50 Q170,60 165,75 Q150,85 130,80 Q100,85 80,75 Q60,65 60,50Z"
-                    fill="rgba(59, 130, 246, 0.15)" stroke="rgba(59, 130, 246, 0.4)" stroke-width="1.5"/>
+              <!-- Globe surface with dots -->
+              <circle
+                cx="150"
+                cy="150"
+                r="128"
+                fill="url(#globeDots)"
+                opacity="0.6"
+              />
 
-              <!-- Europe -->
-              <path d="M180,40 Q200,35 220,40 Q240,38 250,45 Q255,55 250,65 Q240,70 230,68 Q210,70 195,65 Q180,60 180,40Z"
-                    fill="rgba(34, 211, 153, 0.15)" stroke="rgba(34, 211, 153, 0.4)" stroke-width="1.5"/>
-
-              <!-- Asia -->
-              <path d="M260,35 Q310,30 350,40 Q380,45 390,60 Q395,75 385,85 Q370,90 350,85 Q320,90 290,80 Q270,75 260,60 Q255,45 260,35Z"
-                    fill="rgba(245, 158, 11, 0.15)" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1.5"/>
-
-              <!-- Connection lines between locations -->
-              <path d="M110,65 Q160,50 220,55 Q290,60 330,70"
-                    stroke="rgba(139, 92, 246, 0.3)" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
-
-              <!-- Location markers with enhanced design -->
-              <!-- USA/Canada -->
-              <g class="location-group usa-marker" [class.active]="isTimezoneAvailable('usa')">
-                <circle cx="110" cy="65" r="5" fill="#3b82f6" opacity="0.4"/>
-                <circle cx="110" cy="65" r="3.5" fill="#3b82f6" filter="url(#glow)"/>
-                <text x="110" y="85" text-anchor="middle" class="location-label">USA</text>
+              <!-- Animated country highlights -->
+              <!-- USA highlight -->
+              <g class="country-highlight usa-highlight"
+                 [class.active]="selectedCountry === 'usa' || selectedWorkMode === 'remote'">
+                <circle cx="70" cy="120" r="15" fill="rgba(59, 130, 246, 0.6)" opacity="0"/>
+                <circle cx="70" cy="120" r="8" fill="#3b82f6"/>
+                <text x="70" y="125" text-anchor="middle" class="country-label" fill="#fff" font-size="8">US</text>
               </g>
 
-              <!-- UK/Europe -->
-              <g class="location-group uk-marker" [class.active]="isTimezoneAvailable('uk')">
-                <circle cx="220" cy="55" r="5" fill="#34d399" opacity="0.4"/>
-                <circle cx="220" cy="55" r="3.5" fill="#34d399" filter="url(#glow)"/>
-                <text x="220" y="75" text-anchor="middle" class="location-label">UK</text>
+              <!-- UK highlight -->
+              <g class="country-highlight uk-highlight"
+                 [class.active]="selectedCountry === 'uk' || selectedWorkMode === 'remote'">
+                <circle cx="165" cy="90" r="15" fill="rgba(34, 197, 94, 0.6)" opacity="0"/>
+                <circle cx="165" cy="90" r="8" fill="#22c55e"/>
+                <text x="165" y="95" text-anchor="middle" class="country-label" fill="#fff" font-size="8">UK</text>
               </g>
 
-              <!-- India/Asia -->
-              <g class="location-group india-marker" [class.active]="isTimezoneAvailable('india')">
-                <circle cx="330" cy="70" r="5" fill="#f59e0b" opacity="0.4"/>
-                <circle cx="330" cy="70" r="3.5" fill="#f59e0b" filter="url(#glow)"/>
-                <text x="330" y="90" text-anchor="middle" class="location-label">India</text>
+              <!-- India highlight -->
+              <g class="country-highlight india-highlight"
+                 [class.active]="selectedCountry === 'india' || selectedWorkMode === 'hybrid' || selectedWorkMode === 'remote'">
+                <circle cx="230" cy="140" r="15" fill="rgba(245, 158, 11, 0.6)" opacity="0"/>
+                <circle cx="230" cy="140" r="8" fill="#f59e0b"/>
+                <text x="230" y="145" text-anchor="middle" class="country-label" fill="#fff" font-size="8">IN</text>
+              </g>
+
+              <!-- Orbital lines -->
+              <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+              <ellipse cx="150" cy="150" rx="130" ry="65" fill="none" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+              <ellipse cx="150" cy="150" rx="65" ry="130" fill="none" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+
+              <!-- Floating particles around globe -->
+              <g class="floating-particles">
+                <circle class="particle particle-1" r="2" fill="rgba(59, 130, 246, 0.6)">
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    values="0 150 150;360 150 150"
+                    dur="20s"
+                    repeatCount="indefinite"/>
+                </circle>
+                <circle class="particle particle-2" r="1.5" fill="rgba(34, 197, 94, 0.6)">
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    values="120 150 150;480 150 150"
+                    dur="25s"
+                    repeatCount="indefinite"/>
+                </circle>
+                <circle class="particle particle-3" r="1.8" fill="rgba(245, 158, 11, 0.6)">
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    values="240 150 150;600 150 150"
+                    dur="18s"
+                    repeatCount="indefinite"/>
+                </circle>
               </g>
             </svg>
           </div>
+
+          <!-- Country selection buttons (hidden but functional) -->
+          <div class="country-selectors">
+            <button
+              class="country-btn usa-btn"
+              [class.active]="selectedCountry === 'usa'"
+              (click)="selectCountry('usa')"
+              title="Select USA"
+            >
+              🇺🇸
+            </button>
+            <button
+              class="country-btn uk-btn"
+              [class.active]="selectedCountry === 'uk'"
+              (click)="selectCountry('uk')"
+              title="Select UK"
+            >
+              🇬🇧
+            </button>
+            <button
+              class="country-btn india-btn"
+              [class.active]="selectedCountry === 'india'"
+              (click)="selectCountry('india')"
+              title="Select India"
+            >
+              🇮🇳
+            </button>
+          </div>
         </div>
 
-        <!-- Available Timezones -->
-        <div class="available-timezones">
-          <h4 class="available-title">Available for {{ selectedWorkMode }} work:</h4>
-          <div class="timezone-badges">
-            <div
-              *ngFor="let timezone of availableTimezones"
-              class="timezone-badge"
-              [ngClass]="timezone.code"
-            >
-              <span class="timezone-flag">{{ timezone.flag }}</span>
-              <div class="timezone-info">
-                <span class="timezone-name">{{ timezone.name }}</span>
-                <span class="timezone-time">{{ timezone.time }}</span>
-              </div>
-            </div>
+        <!-- Location Tag at Bottom -->
+        <div class="location-tag">
+          <div class="location-info">
+            <span class="location-flag">{{ getCurrentFlag() }}</span>
+            <span class="location-name">{{ getCurrentLocation() }}</span>
           </div>
+          <div class="work-mode-tag" [ngClass]="selectedWorkMode">
+            {{ selectedWorkMode | titlecase }}
+          </div>
+        </div>
+
+        <!-- Hidden work mode selector for functionality -->
+        <div class="work-mode-selector">
+          <button
+            class="mode-toggle-btn"
+            [class.remote]="selectedWorkMode === 'remote'"
+            [class.hybrid]="selectedWorkMode === 'hybrid'"
+            (click)="toggleWorkMode()"
+          >
+            {{ selectedWorkMode === 'remote' ? '🌐 Remote' : '🏢 Hybrid' }}
+          </button>
         </div>
       </div>
     </div>
@@ -153,16 +244,44 @@
     <!-- Card 3: Technologies Card -->
     <div class="technologies-card card">
       <div class="card-content">
-        <div class="tech-header">
-          <h3 class="tech-title">Passionate about cutting-edge technologies</h3>
-          <div class="tech-badges">
-            <span class="tech-badge primary">Motion</span>
-            <span class="tech-badge secondary">Sanity</span>
-            <span class="tech-badge tertiary">Contentful</span>
+        <!-- Background dust particles -->
+        <div class="dust-particles-container">
+          <div class="dust-particle" *ngFor="let particle of dustParticles; let i = index"
+               [style.animation-delay.ms]="i * 200"
+               [style.left.%]="particle.x"
+               [style.top.%]="particle.y"
+               [style.width.px]="particle.size"
+               [style.height.px]="particle.size">
           </div>
         </div>
 
-        <!-- Technology Icons Floating Animation -->
+        <!-- Background card -->
+        <div class="background-card">
+          <div class="bg-card-header">
+            <div class="bg-card-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+          </div>
+          <div class="bg-card-content">
+            <h4 class="bg-card-title">Websites that stand out and make a difference</h4>
+            <div class="bg-card-buttons">
+              <button class="bg-card-btn primary">Get Started</button>
+              <button class="bg-card-btn secondary">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="tech-header">
+          <h3 class="tech-title">
+            Passionate about
+            <span class="gradient-text">cutting-edge technologies</span>
+          </h3>
+        </div>
+
+        <!-- Technology Icons Floating Animation (Restored) -->
         <div class="tech-container">
 
           <!-- Row 1 -->
@@ -217,13 +336,32 @@
     <!-- Card 3: Project Work Card -->
     <div class="project-work-card card">
       <div class="card-content">
+        <!-- Background dust particles -->
+        <div class="project-dust-particles-container">
+          <div class="project-dust-particle" *ngFor="let particle of projectDustParticles; let i = index"
+               [style.animation-delay.ms]="i * 150"
+               [style.left.%]="particle.x"
+               [style.top.%]="particle.y"
+               [style.width.px]="particle.size"
+               [style.height.px]="particle.size">
+          </div>
+        </div>
+
         <div class="project-header">
           <div class="logo-section">
             <div class="logo-circle">
               <span class="logo-text">SK</span>
             </div>
           </div>
-          <h3 class="project-title">Let's work together on your next project</h3>
+          <h3 class="project-title">
+            <span class="animated-text" style="animation-delay: 0.1s">Let's</span>
+            <span class="animated-text" style="animation-delay: 0.2s">work</span>
+            <span class="animated-text" style="animation-delay: 0.3s">together</span>
+            <span class="animated-text" style="animation-delay: 0.4s">on</span>
+            <span class="animated-text" style="animation-delay: 0.5s">your</span>
+            <span class="animated-text" style="animation-delay: 0.6s">next</span>
+            <span class="gradient-project-text animated-text" style="animation-delay: 0.7s">project</span>
+          </h3>
         </div>
 
         <div class="contact-info">
@@ -268,10 +406,6 @@
           </div>
           <h3 class="saas-title">The Inside Scoop</h3>
           <h2 class="saas-subtitle">Currently building a SaaS Application</h2>
-          <p class="saas-description">
-            Architecting a comprehensive platform with microservices, real-time analytics,
-            and scalable infrastructure for modern businesses.
-          </p>
         </div>
       </div>
     </div>
