@@ -185,10 +185,22 @@
 
 /* Mobile (≤767px): stack columns, hide side cards, shrink everything */
 @media (max-width: 767px) {
-  /* Stack left + right columns vertically */
+  /* Container improvements */
+  .about-container {
+    padding-bottom: 1rem;
+    min-height: auto; /* Don't force full height on mobile */
+  }
+
+  /* Stack left + right columns vertically with better spacing */
   .inner-wrapper {
     flex-direction: column;
-    gap: 1.5rem; /* smaller gap on mobile */
+    gap: 2rem; /* Better gap for mobile */
+    padding: 2rem 1rem; /* Reduced top/bottom padding */
+  }
+
+  /* Text column improvements */
+  .text-column {
+    order: 1; /* Text first on mobile */
   }
 
   /* Hide the prev/next cards entirely on mobile */
@@ -198,42 +210,105 @@
     display: none;
   }
 
-  /* Shrink carousel to full width and shorter height */
-  .carousel-container {
-    max-width: 100%;
-    height: 260px; /* adjust as desired */
+  /* Carousel improvements */
+  .carousel-column {
+    order: 2; /* Carousel second on mobile */
+    margin-top: 1rem;
   }
 
-  /* Adjust font sizes on mobile */
+  /* Shrink carousel to better mobile size */
+  .carousel-container {
+    max-width: 100%;
+    height: 280px; /* Slightly taller for better proportion */
+    margin: 0 auto;
+  }
+
+  /* Better mobile typography */
   .heading {
-    font-size: 1.875rem; /* ~30px */
+    font-size: 1.75rem; /* Smaller but still prominent */
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
   }
 
   .body-text {
-    font-size: 1rem; /* ~16px */
+    font-size: 0.95rem; /* Slightly smaller for mobile */
+    line-height: 1.7; /* Better readability */
+    margin-bottom: 1.25rem;
+    color: #e5e5e5; /* Slightly brighter for mobile */
   }
 
   .caption-overlay {
-    font-size: 0.875rem; /* ~14px */
+    font-size: 0.8rem; /* Smaller caption text */
+    padding: 0.75rem 0.5rem; /* Better padding */
   }
 
-  /* Reduce bottom padding -->
-  .about-container {
-    padding-bottom: 2rem;
+  /* Social icons improvements */
+  .social-icons {
+    margin-top: 1.5rem;
+    justify-content: flex-start;
+    gap: 1.5rem; /* More space between icons */
+  }
+
+  .social-icon {
+    width: 2rem; /* Slightly larger for better touch targets */
+    height: 2rem;
+  }
+
+  /* Center card adjustments for mobile */
+  .carousel-item.current {
+    transform: translateX(0) translateZ(0) rotateY(0deg) scale(0.95);
+  }
+
+  /* Image improvements */
+  .carousel-image {
+    border-radius: 0.75rem; /* Larger radius for mobile */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Extra small mobile devices (≤480px) */
+@media (max-width: 480px) {
+  .inner-wrapper {
+    padding: 1.5rem 0.75rem;
+    gap: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .body-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .carousel-container {
+    height: 240px;
+  }
+
+  .social-icons {
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .social-icon {
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }
 
 /* ===== 6) Extra Section Placeholder ===== */
-  .extra-section {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid #333; /* Subtle divider */
-  }
+.extra-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #333; /* Subtle divider */
+}
 
-  .section-heading {
-    font-size: 2rem; /* ~32px */
-    font-weight: 600;
-    color: #f0f0f0;
-    margin-bottom: 1.5rem;
-  }
+.section-heading {
+  font-size: 2rem; /* ~32px */
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 1.5rem;
 }
