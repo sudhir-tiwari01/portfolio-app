@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <rect width="200" height="60" rx="8" fill="#1e293b"/>
+  <polygon points="10,15 25,15 35,30 25,45 10,45" fill="#10b981"/>
+  <text x="45" y="35" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">Infosys</text>
+  <rect x="170" y="25" width="20" height="10" rx="2" fill="#10b981" opacity="0.6"/>
+</svg>

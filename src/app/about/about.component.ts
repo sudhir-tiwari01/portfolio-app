@@ -38,7 +38,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   // Exactly three images + captions
   public carouselItems: CarouselItem[] = [
     {
-      imageUrl: 'assets/images/about-folder/Profile Pic.jpg',
+      imageUrl: 'assets/images/about-folder/Profile Pic.jfif',
       caption: 'I Code – Building sleek, efficient web apps.',
     },
     {

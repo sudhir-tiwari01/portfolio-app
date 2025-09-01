@@ -195,3 +195,33 @@
 
 <!-- Content Showcase Section -->
 <app-content-showcase></app-content-showcase>
+
+<!-- Featured Case Studies Section -->
+<section class="featured-case-studies-section">
+  <div class="featured-title-container">
+    <h4 class="featured-subtitle">FEATURED CASE STUDIES</h4>
+    <h2 class="featured-main-title">
+      Curated <span class="featured-highlight">work</span>
+    </h2>
+  </div>
+</section>
+
+<!-- Work Projects Section -->
+<app-work [showTitle]="false" [isHomeContext]="true"></app-work>
+
+<!-- Skills Section -->
+<section class="skills-section">
+  <div class="skills-title-container">
+    <h4 class="skills-subtitle">MY SKILLS</h4>
+    <h2 class="skills-main-title">
+      The Secret <span class="skills-highlight">Sauce</span>
+    </h2>
+  </div>
+  
+  <div class="skills-grid">
+    <div *ngFor="let tech of technologies" class="skill-chip">
+      <img [src]="tech.icon" [alt]="tech.name" class="skill-icon">
+      <span>{{ tech.name }}</span>
+    </div>
+  </div>
+</section>

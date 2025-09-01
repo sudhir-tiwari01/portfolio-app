@@ -1,88 +1,420 @@
 <!-- src/app/work/work.component.html -->
-<section class="work-section">
+<section class="work-section" #workSection [class.home-context]="isHomeContext">
   <!-- ===== TOP PADDING & TITLES ===== -->
-  <h2 class="work-title">work</h2>
-  <h3 class="work-subtitle">
-    Experiences that Shaped my
-    <span class="italic-gradient">Journey</span>
-  </h3>
+  <div *ngIf="showTitle">
+    <h2 class="work-title">work</h2>
+    <h3 class="work-subtitle">
+      Experiences that Shaped my
+      <span class="italic-gradient">Journey</span>
+    </h3>
+  </div>
 
-  <div class="work-columns">
-    <!-- ===== LEFT: Scrollable Card List ===== -->
-    <div class="left-column" #leftCol>
-      <ng-container *ngFor="let entry of workEntries; let i = index">
-        <div
-          class="work-card-wrapper"
-          #cardRef
-          [class.active-card]="i === currentIndex"
-        >
-          <div class="gradient-frame"></div>
-          <div class="work-card">
-            <div class="card-summary">
-              {{ entry.summary }}
-            </div>
-            <div class="card-image">
-              <img [src]="entry.imageUrl" alt="{{ entry.projectName }}" />
-              <div class="hover-overlay">Click for more details</div>
-            </div>
-          </div>
-        </div>
-      </ng-container>
+  <!-- ===== CAROUSEL CONTAINER ===== -->
+  <div class="carousel-container"
+       #carouselContainer
+       *ngIf="!isDetailedView"
+       [class.mobile]="isMobile"
+       role="region"
+       aria-label="Work projects carousel"
+       [attr.aria-live]="isTransitioning ? 'polite' : 'off'">
+
+    <!-- Mobile swipe indicator -->
+    <div class="mobile-swipe-indicator" *ngIf="isMobile">
+      <div class="swipe-hint">
+        <span class="swipe-icon">👈 👉</span>
+        <span class="swipe-text">Swipe to browse projects</span>
+      </div>
     </div>
 
-    <!-- ===== RIGHT: Sticky Details Panel ===== -->
-    <!-- ★ Added (wheel) handler here to forward scroll to left-column ★ -->
-    <div class="right-column" (wheel)="onRightColumnWheel($event)">
-      <div class="work-details sticky-details">
-        <div class="project-name">
-          {{ workEntries[currentIndex].projectName }}
-        </div>
-        <div class="project-dates">
-          {{ workEntries[currentIndex].dates }}
-        </div>
-        <div class="company-info">
-          <div class="company-logo">
-            <div class="logo-placeholder">Logo</div>
+
+    <!-- Card Display Area -->
+    <div class="carousel-track">
+      <div
+        class="carousel-card"
+        #workCard
+        *ngFor="let entry of workEntries; let i = index"
+        [class.active]="i === currentIndex"
+        [class.next]="i === (currentIndex + 1) % workEntries.length"
+        [class.prev]="i === (currentIndex - 1 + workEntries.length) % workEntries.length"
+        [style.transform]="'translateX(' + ((i - currentIndex) * 100) + '%)'">
+
+        <!-- Card Content -->
+        <div class="card-content">
+          <!-- Left Side: Image -->
+          <div class="card-image-section"
+               (click)="hasDetailedView(entry) && openDetailedView(entry)"
+               [class.mobile-clickable]="isMobile && hasDetailedView(entry)"
+               role="button"
+               [attr.tabindex]="hasDetailedView(entry) ? '0' : null"
+               [attr.aria-label]="hasDetailedView(entry) ? 'View ' + entry.projectName + ' details' : null"
+               (keydown.enter)="hasDetailedView(entry) && openDetailedView(entry)"
+               (keydown.space)="hasDetailedView(entry) && openDetailedView(entry)">
+            <div class="project-image-container">
+              <img [src]="entry.imageUrl" [alt]="entry.projectName" class="project-image" />
+              <div class="image-overlay">
+                <div class="project-category" [ngClass]="getCategoryColor(entry.category)">
+                  {{ formatCategory(entry.category) }}
+                </div>
+              </div>
+              <!-- Creative Hover Overlay -->
+              <div class="creative-hover-overlay"
+                   *ngIf="hasDetailedView(entry)"
+                   [class.mobile-enhanced]="isMobile">
+                <!-- Corner Frames -->
+                <div class="corner-frame top-left"></div>
+                <div class="corner-frame top-right"></div>
+                <div class="corner-frame bottom-left"></div>
+                <div class="corner-frame bottom-right"></div>
+
+                <!-- Center Content -->
+                <div class="overlay-center">
+                  <!-- Animated Icon -->
+                  <div class="explore-icon-container">
+                    <svg class="explore-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15 12L12 9M12 9L9 12M12 9V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M12 5C16.4183 5 20 8.58172 20 13C20 17.4183 16.4183 21 12 21C7.58172 21 4 17.4183 4 13C4 8.58172 7.58172 5 12 5Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </div>
+
+                  <!-- Action Text -->
+                  <div class="explore-text">
+                    <span class="explore-main">{{ isMobile ? 'Tap to Explore' : 'View Project' }}</span>
+                    <span class="explore-sub">{{ isMobile ? 'Full details' : 'See full case study' }}</span>
+                  </div>
+                </div>
+
+                <!-- Floating Tech Badges -->
+                <div class="floating-tech-badges" *ngIf="entry.skills && entry.skills.length > 0">
+                  <div class="tech-badge"
+                       *ngFor="let skill of entry.skills.slice(0, 3); let i = index"
+                       [style.animation-delay]="(i * 0.2) + 's'">
+                    {{ skill.name }}
+                  </div>
+                </div>
+
+                <!-- Animated Particles -->
+                <div class="particle-container">
+                  <div class="particle" *ngFor="let particle of [1,2,3,4,5]"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="company-text">
-            {{ workEntries[currentIndex].relation }}
+
+          <!-- Right Side: Details -->
+          <div class="card-details-section">
+            <div class="project-header">
+              <h4 class="project-name">{{ entry.projectName }}</h4>
+              <div class="project-dates">{{ entry.dates }}</div>
+            </div>
+
+            <div class="company-info">
+              <div class="company-logo">
+                <img
+                  *ngIf="entry.companyLogo"
+                  [src]="entry.companyLogo"
+                  [alt]="entry.company"
+                  class="logo-image"
+                />
+                <div
+                  *ngIf="!entry.companyLogo"
+                  class="logo-placeholder"
+                >
+                  {{ entry.company.substring(0, 2).toUpperCase() }}
+                </div>
+              </div>
+              <div class="company-text">{{ entry.relation }}</div>
+            </div>
+
+            <div class="project-summary">
+              <p>{{ entry.summary }}</p>
+            </div>
+
+            <div class="project-description">
+              <ng-container *ngFor="let line of entry.description.trim().split('\n')">
+                <p
+                  class="desc-line"
+                  *ngIf="!line.trim().startsWith('•')"
+                >
+                  {{ line.trim() }}
+                </p>
+                <p
+                  class="desc-line bullet-point"
+                  *ngIf="line.trim().startsWith('•')"
+                >
+                  {{ line.trim().substring(1).trim() }}
+                </p>
+              </ng-container>
+            </div>
+
+            <div class="skills-section">
+              <h5 class="skills-title">Technologies Used</h5>
+              <div class="skills-chips">
+                <span class="skill-chip" *ngFor="let skill of entry.skills">
+                  <img [src]="skill.icon" [alt]="skill.name" class="skill-icon" />
+                  {{ skill.name }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="carousel-navigation" [class.mobile]="isMobile">
+      <!-- Previous Button -->
+      <button
+        class="nav-button prev-button"
+        (click)="prevCard()"
+        [disabled]="isTransitioning"
+        [class.mobile]="isMobile"
+        [attr.aria-label]="'Previous project' + (isMobile ? ' (or swipe right)' : '')"
+        type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Dots Indicator -->
+      <div class="carousel-dots" [class.mobile]="isMobile">
+        <button
+          class="dot"
+          *ngFor="let entry of workEntries; let i = index"
+          [class.active]="i === currentIndex"
+          [class.mobile]="isMobile"
+          (click)="goToCard(i)"
+          [attr.aria-label]="'Go to project ' + (i + 1) + ' of ' + workEntries.length"
+          type="button">
+        </button>
+      </div>
+
+      <!-- Next Button -->
+      <button
+        class="nav-button next-button"
+        (click)="nextCard()"
+        [disabled]="isTransitioning"
+        [class.mobile]="isMobile"
+        [attr.aria-label]="'Next project' + (isMobile ? ' (or swipe left)' : '')"
+        type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9,18 15,12 9,6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Card Counter -->
+    <div class="card-counter">
+      <span class="current-number">{{ currentIndex + 1 }}</span>
+      <span class="separator">/</span>
+      <span class="total-number">{{ workEntries.length }}</span>
+    </div>
+
+    <!-- Keyboard Navigation Hint -->
+    <div class="navigation-hint" [class.mobile]="isMobile">
+      <span *ngIf="!isMobile">Use ← → keys or swipe to navigate</span>
+      <span *ngIf="isMobile">Swipe left/right to browse • Tap to explore</span>
+    </div>
+  </div>
+
+  <!-- ===== DETAILED VIEW ===== -->
+    <!-- Detailed View Mode -->
+  <div class="detailed-view-container" [class.active]="isDetailedView" *ngIf="isDetailedView && selectedProject">
+    <!-- Back Button -->
+    <button class="back-button" (click)="closeDetailedView()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+      Back to all projects
+    </button>
+
+    <!-- Main Layout -->
+    <div class="detailed-layout">
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Project Header -->
+        <div class="detailed-header">
+          <h1 class="detailed-project-name">{{ selectedProject.projectName }}</h1>
+          <p class="detailed-project-summary">{{ selectedProject.detailedView?.overview }}</p>
+
+          <!-- Tech Tags -->
+          <div class="tech-tags">
+            <span *ngFor="let tech of getMainTechStack()" class="tech-tag">{{ tech }}</span>
+            <span class="date-tag">{{ selectedProject.dates }}</span>
+          </div>
+
+          <!-- Project Actions -->
+          <div class="project-actions" *ngIf="selectedProject.detailedView?.links?.live || selectedProject.detailedView?.links?.demo">
+            <a [href]="selectedProject.detailedView?.links?.live || selectedProject.detailedView?.links?.demo" target="_blank" class="action-btn primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15,3 21,3 21,9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              View Live Project
+            </a>
           </div>
         </div>
 
-        <div class="project-desc">
-          <ng-container
-            *ngFor="
-              let line of workEntries[currentIndex].description.trim().split(
-                '\n'
-              )
-            "
-          >
-            <p
-              class="desc-paragraph"
-              *ngIf="!line.trim().startsWith('•')"
-            >
-              {{ line.trim() }}
-            </p>
-            <p
-              class="desc-paragraph bullet-line"
-              *ngIf="line.trim().startsWith('•')"
-            >
-              {{ line.trim().substring(1).trim() }}
-            </p>
-          </ng-container>
+        <!-- Project Showcase -->
+        <div class="project-showcase" *ngIf="selectedProject.imageUrl">
+          <img [src]="selectedProject.imageUrl" [alt]="selectedProject.projectName" class="showcase-image">
         </div>
 
-        <div class="skills-chips">
-          <span
-            class="skill-chip"
-            *ngFor="let s of workEntries[currentIndex].skills"
-          >
-            <img [src]="s.icon" alt="{{ s.name }}" class="skill-icon" />
-            {{ s.name }}
-          </span>
+        <!-- Overview Section -->
+        <div id="overview" class="content-section">
+          <div class="section-header">
+            <span class="section-emoji">🔍</span>
+            <h2>Overview</h2>
+          </div>
+          <div class="section-content">
+            <p>{{ selectedProject.detailedView?.overview }}</p>
+          </div>
+        </div>
+
+        <!-- Key Features Section -->
+        <div id="key-features" class="content-section" *ngIf="selectedProject.detailedView?.keyFeatures?.length">
+          <div class="section-header">
+            <span class="section-emoji">⭐</span>
+            <h2>Key Features</h2>
+          </div>
+          <div class="section-content">
+            <div class="features-list">
+              <div *ngFor="let feature of selectedProject.detailedView?.keyFeatures" class="feature-item">
+                <div class="feature-toggle">
+                  <span class="feature-icon">{{ feature.icon }}</span>
+                  <h4>{{ feature.title }}</h4>
+                </div>
+                <div class="feature-description">
+                  <p>{{ feature.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech Stack Section -->
+        <div id="tech-stack" class="content-section" *ngIf="selectedProject.detailedView?.techStack?.length">
+          <div class="section-header">
+            <span class="section-emoji">⚡</span>
+            <h2>Tech Stack</h2>
+          </div>
+          <div class="section-content">
+            <div class="tech-grid">
+              <div *ngFor="let categoryItem of selectedProject.detailedView?.techStack" class="tech-category-item">
+                <h4>{{ categoryItem.category }}</h4>
+                <ul>
+                  <li *ngFor="let tech of categoryItem.technologies">{{ tech }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenges & Learnings Section -->
+        <div id="challenges-learnings" class="content-section" *ngIf="selectedProject.detailedView?.challenges?.length">
+          <div class="section-header">
+            <span class="section-emoji">🎯</span>
+            <h2>Challenges & Learnings</h2>
+          </div>
+          <div class="section-content">
+            <div class="challenges-content">
+              <div *ngFor="let challenge of selectedProject.detailedView?.challenges" class="challenge-block">
+                <h4>{{ challenge.title }}</h4>
+                <p>{{ challenge.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcome Section -->
+        <div id="outcome" class="content-section" *ngIf="selectedProject.detailedView?.outcome">
+          <div class="section-header">
+            <span class="section-emoji">🎯</span>
+            <h2>Outcome</h2>
+          </div>
+          <div class="section-content">
+            <p>{{ selectedProject.detailedView?.outcome }}</p>
+
+            <div class="outcome-links" *ngIf="selectedProject.detailedView?.links?.live || selectedProject.detailedView?.links?.demo || selectedProject.detailedView?.links?.source">
+              <div class="link-item">
+                <span class="link-emoji">🔗</span>
+                <span class="link-label">Check it out:</span>
+                <a *ngIf="selectedProject.detailedView?.links?.live" [href]="selectedProject.detailedView?.links?.live" target="_blank" class="link-url">Live Demo</a>
+                <span *ngIf="(selectedProject.detailedView?.links?.live || selectedProject.detailedView?.links?.demo) && selectedProject.detailedView?.links?.source" class="link-or">or</span>
+                <a *ngIf="selectedProject.detailedView?.links?.source" [href]="selectedProject.detailedView?.links?.source" target="_blank" class="link-source">Source Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Sidebar -->
+      <div class="navigation-sidebar" [class.mobile]="isMobile">
+        <div class="nav-content">
+          <div class="nav-title">{{ isMobile ? 'SECTIONS' : 'ON THIS PAGE' }}</div>
+          <div class="nav-items" [class.mobile-nav]="isMobile">
+            <div class="nav-item"
+                 [class.active]="activeNavSection === 'overview'"
+                 [class.mobile]="isMobile"
+                 (click)="scrollToSection('overview')"
+                 role="button"
+                 tabindex="0"
+                 (keydown.enter)="scrollToSection('overview')"
+                 (keydown.space)="scrollToSection('overview')">
+              <span class="nav-dot">🔍</span>
+              <span>Overview</span>
+            </div>
+            <div class="nav-item"
+                 [class.active]="activeNavSection === 'key-features'"
+                 [class.mobile]="isMobile"
+                 *ngIf="selectedProject.detailedView?.keyFeatures?.length"
+                 (click)="scrollToSection('key-features')"
+                 role="button"
+                 tabindex="0"
+                 (keydown.enter)="scrollToSection('key-features')"
+                 (keydown.space)="scrollToSection('key-features')">
+              <span class="nav-dot">⭐</span>
+              <span>{{ isMobile ? 'Features' : 'Key Features' }}</span>
+            </div>
+            <div class="nav-item"
+                 [class.active]="activeNavSection === 'tech-stack'"
+                 [class.mobile]="isMobile"
+                 *ngIf="selectedProject.detailedView?.techStack?.length"
+                 (click)="scrollToSection('tech-stack')"
+                 role="button"
+                 tabindex="0"
+                 (keydown.enter)="scrollToSection('tech-stack')"
+                 (keydown.space)="scrollToSection('tech-stack')">
+              <span class="nav-dot">⚡</span>
+              <span>{{ isMobile ? 'Tech' : 'Tech Stack' }}</span>
+            </div>
+            <div class="nav-item"
+                 [class.active]="activeNavSection === 'challenges-learnings'"
+                 [class.mobile]="isMobile"
+                 *ngIf="selectedProject.detailedView?.challenges?.length"
+                 (click)="scrollToSection('challenges-learnings')"
+                 role="button"
+                 tabindex="0"
+                 (keydown.enter)="scrollToSection('challenges-learnings')"
+                 (keydown.space)="scrollToSection('challenges-learnings')">
+              <span class="nav-dot">🎯</span>
+              <span>{{ isMobile ? 'Challenges' : 'Challenges & Learnings' }}</span>
+            </div>
+            <div class="nav-item"
+                 [class.active]="activeNavSection === 'outcome'"
+                 [class.mobile]="isMobile"
+                 *ngIf="selectedProject.detailedView?.outcome"
+                 (click)="scrollToSection('outcome')"
+                 role="button"
+                 tabindex="0"
+                 (keydown.enter)="scrollToSection('outcome')"
+                 (keydown.space)="scrollToSection('outcome')">
+              <span class="nav-dot">🎯</span>
+              <span>Outcome</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <br /><br /><br /><br /><br />
 </section>

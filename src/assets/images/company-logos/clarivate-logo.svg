@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <rect width="200" height="60" rx="8" fill="#1e293b"/>
+  <rect x="10" y="15" width="30" height="30" rx="4" fill="#3b82f6"/>
+  <text x="50" y="35" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">Clarivate</text>
+  <circle cx="180" cy="30" r="8" fill="#3b82f6" opacity="0.6"/>
+</svg>
