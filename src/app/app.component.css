@@ -5,16 +5,3 @@
   display: flex;
   flex-direction: column;
 }
-
-/* Responsive navbar spacer */
-.navbar-spacer {
-  height: 80px; /* Default height for desktop */
-  background-color: #000;
-}
-
-/* Mobile responsive navbar spacer */
-@media (max-width: 767px) {
-  .navbar-spacer {
-    height: 60px; /* Smaller height for mobile to match navbar */
-  }
-}

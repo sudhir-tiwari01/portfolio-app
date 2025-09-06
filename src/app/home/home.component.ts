@@ -15,6 +15,24 @@ export class HomeComponent {
 
   public email: string = "sudhirtiwari1998@gmail.com";
 
+  // About me section state
+  isImageHovered = false;
+
+  // About me hover handlers
+  onImageHover() {
+    this.isImageHovered = true;
+  }
+
+  onImageLeave() {
+    this.isImageHovered = false;
+  }
+
+  // Navigate to about section
+  navigateToAbout() {
+    // You can use Angular Router here, or for now we'll use simple navigation
+    window.location.href = '/about';
+  }
+
   // Technologies array - using the same skills from content showcase
   technologies = [
     { name: 'Angular', icon: 'assets/svg-icons/angular-svgrepo-com.svg' },

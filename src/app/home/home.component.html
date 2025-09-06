@@ -1,7 +1,7 @@
 <!-- src/app/home/home.component.html -->
 
 <div
-  class="min-h-screen text-white flex flex-col relative home-wrapper"
+  class="min-h-screen text-white flex flex-col relative home-wrapper pt-16 sm:pt-20"
 >
   <!-- ===========================
        Hero Section (tuned font sizes)
@@ -217,11 +217,104 @@
       The Secret <span class="skills-highlight">Sauce</span>
     </h2>
   </div>
-  
+
   <div class="skills-grid">
     <div *ngFor="let tech of technologies" class="skill-chip">
       <img [src]="tech.icon" [alt]="tech.name" class="skill-icon">
       <span>{{ tech.name }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- Know About Me Section -->
+<section class="know-about-me-section">
+  <div class="know-about-container">
+    <!-- Left Content -->
+    <div class="know-about-content">
+      <h4 class="know-about-subtitle">KNOW ABOUT ME</h4>
+
+      <h2 class="know-about-title">
+        Full-Stack Developer and<br>
+        a little bit of <span class="everything-text">everything</span>
+      </h2>
+
+      <div class="know-about-description">
+        <p>
+          I'm Sudhir Tiwari, a proactive full-stack developer passionate
+          about creating dynamic web experiences. From frontend to
+          backend, I thrive on solving complex problems with clean,
+          efficient code. My expertise spans Angular, Spring Boot, and AWS,
+          and I'm always eager to learn more.
+        </p>
+
+        <p>
+          When I'm not immersed in work, I'm exploring new ideas and
+          staying curious. Life's about balance, and I love embracing
+          every part of it.
+        </p>
+
+        <p class="motivational-quote">
+          I believe in waking up each day eager to make a difference!
+        </p>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="know-about-social">
+        <a href="https://www.linkedin.com/in/sudhir-tiwari-a9656a159" target="_blank" class="social-link">
+          <img src="assets/svg-icons/icons8-linkedin.svg" alt="LinkedIn" class="social-icon-small">
+        </a>
+        <a href="https://github.com/sudhir-tiwari01" target="_blank" class="social-link">
+          <img src="assets/svg-icons/icons8-github.svg" alt="GitHub" class="social-icon-small">
+        </a>
+        <a href="https://twitter.com/your-username" target="_blank" class="social-link">
+          <img src="assets/svg-icons/icons8-twitter-bird.svg" alt="Twitter" class="social-icon-small">
+        </a>
+      </div>
+
+      <!-- Work Experience Button -->
+      <button
+        class="work-experience-btn"
+        (click)="navigateToAbout()"
+      >
+        <span>Work Experience</span>
+        <span class="arrow-icon">→</span>
+      </button>
+    </div>
+
+    <!-- Right Image/Initials Card -->
+    <div class="know-about-image-container">
+      <div
+        class="glassmorphism-card"
+        (mouseenter)="onImageHover()"
+        (mouseleave)="onImageLeave()"
+      >
+        <!-- Grid Background -->
+        <div class="grid-background"></div>
+
+        <!-- Initials (default state) -->
+        <div
+          class="initials-content"
+          [class.hidden]="isImageHovered"
+        >
+          SK
+        </div>
+
+        <!-- Profile Image (hover state) -->
+        <div
+          class="profile-image-content"
+          [class.visible]="isImageHovered"
+        >
+          <img
+            src="assets/images/about-folder/Profile Pic.jfif"
+            alt="Sudhir Tiwari"
+            class="profile-image"
+          >
+        </div>
+
+        <!-- Glow Effects -->
+        <div class="glow-effect glow-1"></div>
+        <div class="glow-effect glow-2"></div>
+      </div>
     </div>
   </div>
 </section>

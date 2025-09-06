@@ -1,5 +1,5 @@
 <!-- src/app/work/work.component.html -->
-<section class="work-section" #workSection [class.home-context]="isHomeContext">
+<section class="work-section" #workSection [class.home-context]="isHomeContext" [class.pt-16]="!isHomeContext" [class.sm:pt-20]="!isHomeContext">
   <!-- ===== TOP PADDING & TITLES ===== -->
   <div *ngIf="showTitle">
     <h2 class="work-title">work</h2>

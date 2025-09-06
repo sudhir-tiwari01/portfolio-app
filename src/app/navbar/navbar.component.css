@@ -1,56 +1,8 @@
 /* src/app/navbar/navbar.component.css */
 
-/* ===== Navbar Layout ===== */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.navbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ===== Logo Styles ===== */
-.navbar-logo-section {
-  display: flex;
-  align-items: center;
-  z-index: 1001;
-}
-
-.navbar-logo-circle {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-}
-
-.navbar-logo-circle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-}
-
-.navbar-logo-text {
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  user-select: none;
+/* Hide class for mobile detection */
+.hidden {
+  display: none !important;
 }
 
 /* ===== Desktop Navigation ===== */

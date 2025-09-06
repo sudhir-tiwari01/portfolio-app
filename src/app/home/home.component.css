@@ -238,3 +238,351 @@ html {
     height: 16px;
   }
 }
+
+/* ===== Know About Me Section ===== */
+.know-about-me-section {
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 50%, #000 100%);
+  padding: 8rem 2rem;
+  color: #f0f0f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.know-about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left Content */
+.know-about-content {
+  padding-right: 2rem;
+}
+
+.know-about-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #999;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.know-about-title {
+  font-size: clamp(3rem, 6vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.everything-text {
+  font-style: italic;
+  font-weight: 300;
+  color: #ff4081;
+  background: none;
+  -webkit-text-fill-color: unset;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.know-about-description {
+  margin-bottom: 2rem;
+}
+
+.know-about-description p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  margin-bottom: 1.5rem;
+}
+
+.motivational-quote {
+  font-weight: 600;
+  color: #f0f0f0 !important;
+}
+
+/* Social Icons */
+.know-about-social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.social-icon-small {
+  width: 20px;
+  height: 20px;
+  filter: invert(1) brightness(1.5);
+  transition: filter 0.3s ease;
+}
+
+.social-link:hover .social-icon-small {
+  filter: invert(1) brightness(2);
+}
+
+/* Work Experience Button */
+.work-experience-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.work-experience-btn:hover {
+  color: #8b5cf6;
+  transform: translateX(5px);
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.work-experience-btn:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* Right Image Container */
+.know-about-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.glassmorphism-card {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  background: rgba(59, 130, 246, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glassmorphism-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 60px rgba(59, 130, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: rgba(59, 130, 246, 0.15);
+}
+
+/* Grid Background */
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+}
+
+/* Initials Content */
+.initials-content {
+  position: relative;
+  z-index: 3;
+  font-size: 5rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.initials-content.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Profile Image Content */
+.profile-image-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  z-index: 3;
+  opacity: 0;
+  transition: all 0.4s ease;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 240px;
+  height: 240px;
+}
+
+.profile-image-content.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Glow Effects */
+.glow-effect {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.3;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.glow-1 {
+  top: 20%;
+  left: 20%;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  animation: glow-pulse-1 4s ease-in-out infinite;
+}
+
+.glow-2 {
+  bottom: 20%;
+  right: 20%;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899);
+  animation: glow-pulse-2 4s ease-in-out infinite 2s;
+}
+
+.glassmorphism-card:hover .glow-effect {
+  opacity: 0.5;
+}
+
+@keyframes glow-pulse-1 {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+@keyframes glow-pulse-2 {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .know-about-me-section {
+    padding: 4rem 1rem;
+  }
+
+  .know-about-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .know-about-content {
+    padding-right: 0;
+    order: 2;
+  }
+
+  .know-about-image-container {
+    padding-left: 0;
+    order: 1;
+  }
+
+  .glassmorphism-card {
+    width: 280px;
+    height: 280px;
+  }
+
+  .initials-content {
+    font-size: 4rem;
+  }
+
+  .profile-image-content {
+    width: 200px;
+    height: 200px;
+  }
+
+  .know-about-title {
+    font-size: 2.5rem;
+  }
+
+  .know-about-description p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .know-about-me-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .glassmorphism-card {
+    width: 240px;
+    height: 240px;
+  }
+
+  .initials-content {
+    font-size: 3.5rem;
+  }
+
+  .profile-image-content {
+    width: 180px;
+    height: 180px;
+  }
+
+  .know-about-title {
+    font-size: 2rem;
+  }
+}
