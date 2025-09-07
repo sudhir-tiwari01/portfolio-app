@@ -1,0 +1,41 @@
+<!-- More Utilities Dropdown -->
+<div class="more-utilities-dropdown">
+  <div class="dropdown-container">
+    <div class="cards-grid">
+      <!-- Left Column - Large Cards -->
+      <div class="large-cards-column">
+        <div
+          *ngFor="let card of utilityCards.slice(0, 2)"
+          class="utility-card large-card"
+          [routerLink]="card.route"
+        >
+          <div class="card-background" [style.background]="card.backgroundImage">
+            <div class="card-overlay">
+              <div class="card-content">
+                <h3 class="card-title">{{ card.title }}</h3>
+                <p class="card-description">{{ card.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Small Cards -->
+      <div class="small-cards-column">
+        <div
+          *ngFor="let card of utilityCards.slice(2)"
+          class="utility-card small-card"
+          [routerLink]="card.route"
+        >
+          <div class="card-content">
+            <div class="card-icon" *ngIf="card.icon">{{ card.icon }}</div>
+            <div class="card-text">
+              <h3 class="card-title">{{ card.title }}</h3>
+              <p class="card-description">{{ card.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

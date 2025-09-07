@@ -30,6 +30,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { WorkComponent } from './work/work.component';
 import { SectionEndingComponent } from './section-ending/section-ending.component';
 import { ContentShowcaseComponent } from './content-showcase/content-showcase.component';
+import { MoreUtilitiesModule } from './more-utilities/more-utilities.module';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ContentShowcaseComponent } from './content-showcase/content-showcase.co
     MatCardModule,
     MatIconModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MoreUtilitiesModule
   ],
   providers: [ContactService, ContactDialogService],
   bootstrap: [AppComponent],

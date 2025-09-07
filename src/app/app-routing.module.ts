@@ -10,7 +10,11 @@ const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'more', component: MoreComponent},
   {path :'about', component: AboutComponent},
-  {path : 'work', component: WorkComponent}
+  {path : 'work', component: WorkComponent},
+  {
+    path: '',
+    loadChildren: () => import('./more-utilities/more-utilities.module').then(m => m.MoreUtilitiesModule)
+  }
 ];
 
 @NgModule({

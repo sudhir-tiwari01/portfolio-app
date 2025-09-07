@@ -1,0 +1,55 @@
+<section class="guestbook-hero" role="region" aria-label="Guestbook hero">
+  <div class="hero-inner">
+    <div class="kicker">THE GUESTBOOK</div>
+
+    <h1 class="hero-title">
+      <span class="accent">Got a message?</span>
+      <span class="big">I'd love to hear from you!</span>
+    </h1>
+
+    <p class="hero-sub">Sign my guestbook and share a line — feedback helps me improve my work.</p>
+
+    <div class="pinned-card" aria-hidden="false">
+      <div class="pinned-left">
+        <div class="pin-icon">📌</div>
+        <div class="pinned-label">Pinned</div>
+      </div>
+      <div class="pinned-body">
+        Hey — thanks for stopping by my portfolio. Please sign in with GitHub (use the box below) to leave a comment. I read every message!
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn-signin" (click)="focusGiscus()" aria-label="Sign in with GitHub and leave a message">
+        ↪ Sign In with GitHub
+      </button>
+      <span class="cta-sub">to continue leaving a message</span>
+    </div>
+  </div>
+</section>
+
+<section class="guestbook-comments" aria-label="Guestbook comments">
+  <!-- visual skeleton input (disabled) to match look & feel. Actual posting handled inside giscus iframe -->
+  <!-- <div class="comment-box-skeleton" aria-hidden="true">
+    <div class="user-row">
+      <div class="avatar-placeholder">S</div>
+      <div class="user-name">Signed in user</div>
+      <button class="signout" title="Giscus handles sign-in/out">Sign Out</button>
+    </div>
+
+    <textarea placeholder="Share your thoughts..." disabled></textarea>
+
+    <div class="controls">
+      <div class="charcount">0/300</div>
+      <div class="actions">
+        <button class="btn-clear" disabled>Clear</button>
+        <button class="btn-post" disabled>Post</button>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- actual giscus widget will be injected here -->
+  <div #giscusContainer class="giscus-container" aria-live="polite" aria-label="Comments powered by Giscus"></div>
+
+
+</section>
