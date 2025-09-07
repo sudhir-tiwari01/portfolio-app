@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MoreUtilitiesDropdownComponent } from './more-utilities-dropdown/more-utilities-dropdown.component';
 import { GuestbookComponent } from './guestbook/guestbook.component';
@@ -28,6 +30,8 @@ const routes = [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ],
   exports: [

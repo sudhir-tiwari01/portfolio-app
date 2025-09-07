@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "userName": "Sanjana Kini",
+    "position": "Senior System Engineer",
+    "company": "Infosys",
+    "message": "Working with you has been a privilege; your full-stack expertise blends thoughtful architecture with meticulous implementation. You translate ambiguous requirements into scalable, maintainable systems, mentor teammates, and ship polished features quickly. Reliable, innovative, and user-focused— you elevate every project and make collaboration effortless across the organization with measurable, consistently impactful results.",
+    "timestamp": "2024-01-15T10:00:00Z",
+    "approved": true
+  },
+  {
+    "id": "2",
+    "userName": "Manthan CR",
+    "position": "Senior Software Engineer",
+    "company": "IBM",
+    "message": "Working with you has been a masterclass in reliable engineering and thoughtful design. As a full-stack developer, you pair deep technical skill with clear communication, turning complex requirements into elegant, robust solutions. You're proactive, collaborative, and consistently deliver exceptional quality on time — a true asset to any organization.",
+    "timestamp": "2024-02-10T14:30:00Z",
+    "approved": true
+  }
+]

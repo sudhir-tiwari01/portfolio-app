@@ -1,11 +1,197 @@
 <div class="appreciation-container pt-16 sm:pt-20">
-  <div class="max-w-4xl mx-auto px-4">
-    <h1 class="text-4xl font-bold text-white mb-8">Appreciation</h1>
-    <p class="text-gray-300 text-lg mb-8">If you have worked with me, leave your thoughts.</p>
+  <!-- Hero Section -->
+  <div class="appreciation-hero">
+    <div class="hero-inner">
+      <div class="appreciation-title-container">
+        <h4 class="appreciation-subtitle">APPRECIATION</h4>
+        <h2 class="appreciation-main-title">
+          Voices of <span class="appreciation-highlight">Testimonials</span>
+        </h2>
+        <p class="appreciation-description">
+          If you have worked with me, I'd love to hear your thoughts. Your feedback helps me grow and inspires others to connect.
+        </p>
+      </div>
+    </div>
+  </div>
 
-    <!-- Placeholder content -->
-    <div class="bg-gray-800 rounded-lg p-8">
-      <p class="text-gray-400">Appreciation section coming soon...</p>
+  <!-- Form Section -->
+  <div class="form-section">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="form-container">
+        <h3 class="form-title">Share Your Experience</h3>
+        <form [formGroup]="appreciationForm" (ngSubmit)="onSubmit()" class="appreciation-form">
+          <!-- User Details Row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="userName">Your Name *</label>
+              <input 
+                type="text" 
+                id="userName" 
+                formControlName="userName" 
+                placeholder="John Doe"
+                class="form-input"
+              >
+              <div *ngIf="appreciationForm.get('userName')?.touched && appreciationForm.get('userName')?.errors?.['required']" 
+                   class="error-message">
+                Name is required
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="position">Position *</label>
+              <input 
+                type="text" 
+                id="position" 
+                formControlName="position" 
+                placeholder="Senior Developer"
+                class="form-input"
+              >
+              <div *ngIf="appreciationForm.get('position')?.touched && appreciationForm.get('position')?.errors?.['required']" 
+                   class="error-message">
+                Position is required
+              </div>
+            </div>
+          </div>
+
+          <!-- Company -->
+          <div class="form-group company-autocomplete">
+            <label for="company">Company *</label>
+            <div class="autocomplete-container">
+              <input 
+                type="text" 
+                id="company" 
+                formControlName="company" 
+                placeholder="Start typing company name..."
+                class="form-input"
+                (input)="onCompanyInput($event)"
+                (focus)="showCompanySuggestions = true"
+                (blur)="onCompanyBlur()"
+                (keydown)="onCompanyKeydown($event)"
+                autocomplete="off"
+              >
+              <div class="loading-indicator" *ngIf="isLoadingCompanies">
+                <div class="spinner"></div>
+              </div>
+              
+              <!-- Company Suggestions Dropdown -->
+              <div 
+                class="suggestions-dropdown" 
+                *ngIf="showCompanySuggestions && companySuggestions.length > 0"
+              >
+                <div 
+                  *ngFor="let company of companySuggestions; let i = index"
+                  class="suggestion-item"
+                  [class.highlighted]="i === selectedSuggestionIndex"
+                  (mousedown)="selectCompany(company)"
+                  (mouseenter)="selectedSuggestionIndex = i"
+                >
+                  <div class="company-info">
+                    <div class="company-logo" *ngIf="company.logo">
+                      <img [src]="company.logo" [alt]="company.name" class="logo-img">
+                    </div>
+                    <div class="company-logo placeholder-logo" *ngIf="!company.logo">
+                      {{ getCompanyInitials(company.name) }}
+                    </div>
+                    <div class="company-details">
+                      <div class="company-name">{{ company.name }}</div>
+                      <div class="company-domain" *ngIf="company.domain">{{ company.domain }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- No Results Message -->
+              <div 
+                class="no-results" 
+                *ngIf="showCompanySuggestions && companySuggestions.length === 0 && searchedCompany && !isLoadingCompanies"
+              >
+                No companies found for "{{ searchedCompany }}"
+              </div>
+            </div>
+            <div *ngIf="appreciationForm.get('company')?.touched && appreciationForm.get('company')?.errors?.['required']" 
+                 class="error-message">
+              Company is required
+            </div>
+          </div>
+
+          <!-- Appreciation Message -->
+          <div class="form-group">
+            <label for="message">Your Appreciation *</label>
+            <textarea 
+              id="message" 
+              formControlName="message" 
+              placeholder="Share your experience working with me..."
+              rows="5"
+              class="form-textarea"
+            ></textarea>
+            <div *ngIf="appreciationForm.get('message')?.touched && appreciationForm.get('message')?.errors?.['required']" 
+                 class="error-message">
+              Message is required
+            </div>
+            <div *ngIf="appreciationForm.get('message')?.touched && appreciationForm.get('message')?.errors?.['minlength']" 
+                 class="error-message">
+              Message must be at least 20 characters long
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            [disabled]="appreciationForm.invalid || isSubmitting"
+            class="submit-btn"
+          >
+            <span *ngIf="!isSubmitting">Share Your Thoughts</span>
+            <span *ngIf="isSubmitting">Submitting...</span>
+          </button>
+
+          <!-- Success Message -->
+          <div *ngIf="showSuccessMessage" class="success-message">
+            Thank you for your appreciation! Your feedback has been added below.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appreciations Display -->
+  <div class="appreciations-section" *ngIf="appreciations.length > 0">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="appreciations-title">What People Say</h3>
+      
+      <div class="appreciations-grid">
+        <div 
+          *ngFor="let appreciation of appreciations; let i = index" 
+          class="appreciation-card"
+          [class]="getCardClass(i)"
+        >
+          <div class="card-header">
+            <h4 class="card-title">{{ getCardTitle(i) }}</h4>
+          </div>
+          
+          <div class="card-content">
+            <p class="appreciation-text">{{ appreciation.message }}</p>
+          </div>
+          
+          <div class="card-footer">
+            <div class="user-avatar">
+              {{ getUserInitials(appreciation.userName) }}
+            </div>
+            <div class="user-info">
+              <div class="user-name">{{ appreciation.userName }}</div>
+              <div class="user-details">{{ appreciation.position }} • {{ appreciation.company }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="appreciations.length === 0">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <div class="empty-icon">💭</div>
+      <h3 class="empty-title">No Appreciations Yet</h3>
+      <p class="empty-description">Be the first to share your experience working with me!</p>
     </div>
   </div>
 </div>

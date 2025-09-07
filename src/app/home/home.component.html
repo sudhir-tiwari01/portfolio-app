@@ -320,6 +320,69 @@
 </section>
 
 <!-- ===========================
+     Testimonials Section
+     =========================== -->
+<section class="testimonials-section">
+  <div class="testimonials-container">
+    <!-- Section Header -->
+    <div class="testimonials-header">
+      <h4 class="testimonials-subtitle">APPRECIATION</h4>
+      <h2 class="testimonials-title">
+        Voices of <span class="testimonials-highlight">Testimonials</span>
+      </h2>
+    </div>
+
+    <!-- Moving Cards Container -->
+    <div class="testimonials-slider">
+      <div class="testimonials-track" [style.animation-play-state]="isHovered ? 'paused' : 'running'">
+        <div 
+          *ngFor="let testimonial of testimonials; let i = index" 
+          class="testimonial-card"
+          [class]="getTestimonialCardClass(i)"
+          (mouseenter)="isHovered = true"
+          (mouseleave)="isHovered = false"
+        >
+          <div class="testimonial-content">
+            <p class="testimonial-text">{{ testimonial.message }}</p>
+          </div>
+          <div class="testimonial-footer">
+            <div class="user-avatar">
+              {{ getTestimonialInitials(testimonial.userName) }}
+            </div>
+            <div class="user-info">
+              <div class="user-name">{{ testimonial.userName }}</div>
+              <div class="user-details">{{ testimonial.position }} • {{ testimonial.company }}</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Duplicate testimonials for seamless loop -->
+        <div 
+          *ngFor="let testimonial of testimonials; let i = index" 
+          class="testimonial-card"
+          [class]="getTestimonialCardClass(i)"
+          (mouseenter)="isHovered = true"
+          (mouseleave)="isHovered = false"
+        >
+          <div class="testimonial-content">
+            <p class="testimonial-text">{{ testimonial.message }}</p>
+          </div>
+          <div class="testimonial-footer">
+            <div class="user-avatar">
+              {{ getTestimonialInitials(testimonial.userName) }}
+            </div>
+            <div class="user-info">
+              <div class="user-name">{{ testimonial.userName }}</div>
+              <div class="user-details">{{ testimonial.position }} • {{ testimonial.company }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
      Explore Section
      =========================== -->
 <app-explore-section></app-explore-section>

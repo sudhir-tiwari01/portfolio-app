@@ -1,17 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ContactDialogService } from '../services/contact-dialog.service';
+import { TestimonialService, Testimonial } from '../services/testimonial.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  // Testimonials
+  testimonials: Testimonial[] = [];
+  isHovered = false;
+
   constructor(
     private contactDialogService: ContactDialogService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private testimonialService: TestimonialService
   ) {}
+
+  ngOnInit(): void {
+    this.loadTestimonials();
+  }
 
   public email: string = "sudhirtiwari1998@gmail.com";
 
@@ -66,5 +76,42 @@ export class HomeComponent {
 
   openContactDialog(): void {
     this.contactDialogService.openContactDialog();
+  }
+
+  // Testimonials methods
+  private loadTestimonials(): void {
+    this.testimonialService.getApprovedTestimonials().subscribe(testimonials => {
+      this.testimonials = testimonials.length > 0 ? testimonials : this.getSampleTestimonials();
+    });
+  }
+
+  private getSampleTestimonials(): Testimonial[] {
+    return [
+      {
+        id: '1',
+        userName: 'Sanjana Kini',
+        position: 'Senior System Engineer',
+        company: 'Infosys',
+        message: 'Working with you has been a privilege; your full-stack expertise blends thoughtful architecture with meticulous implementation. You translate ambiguous requirements into scalable, maintainable systems.',
+        timestamp: new Date()
+      },
+      {
+        id: '2',
+        userName: 'Manthan CR',
+        position: 'Senior Software Engineer',
+        company: 'IBM',
+        message: 'Working with you has been a masterclass in reliable engineering and thoughtful design. As a full-stack developer, you pair deep technical skill with clear communication.',
+        timestamp: new Date()
+      }
+    ];
+  }
+
+  getTestimonialInitials(name: string): string {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  }
+
+  getTestimonialCardClass(index: number): string {
+    const classes = ['testimonial-green', 'testimonial-pink', 'testimonial-blue', 'testimonial-orange'];
+    return classes[index % classes.length];
   }
 }
