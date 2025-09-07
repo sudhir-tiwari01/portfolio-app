@@ -1,0 +1,339 @@
+.explore-section {
+  background-color: #000;
+  color: white;
+  padding: 3rem 2rem 6rem 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.explore-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styling */
+.explore-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.explore-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 1rem 0;
+  font-family: sans-serif;
+}
+
+.explore-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #f0f0f0;
+  margin: 0;
+  font-family: serif;
+}
+
+.explore-highlight {
+  color: #e91e63;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Grid Layout */
+.explore-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Card Base Styling */
+.explore-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.explore-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin: 0 0 0.5rem 0;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Uses Card Specific */
+.uses-card {
+  position: relative;
+}
+
+.card-icon-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b5cf6;
+  transition: all 0.3s ease;
+}
+
+.card-icon:nth-child(1) {
+  background: rgba(236, 72, 153, 0.2);
+  color: #ec4899;
+}
+
+.card-icon:nth-child(2) {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.card-icon:nth-child(3) {
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+}
+
+.uses-card:hover .card-icon {
+  transform: translateY(-2px);
+}
+
+/* Guestbook Card Specific */
+.guestbook-card {
+  position: relative;
+}
+
+.guestbook-visual {
+  margin-bottom: 1.5rem;
+  position: relative;
+  height: 80px;
+}
+
+.guestbook-screens {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.screen {
+  position: absolute;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.screen-1 {
+  width: 60%;
+  height: 70%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  transform: rotate(-5deg);
+}
+
+.screen-2 {
+  width: 60%;
+  height: 70%;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  transform: rotate(5deg);
+}
+
+.guestbook-card:hover .screen-1 {
+  transform: rotate(-8deg) translateY(-4px);
+}
+
+.guestbook-card:hover .screen-2 {
+  transform: rotate(8deg) translateY(-4px);
+}
+
+/* Spotify Card Specific */
+.spotify-card {
+  background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+  color: white;
+  position: relative;
+}
+
+.spotify-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.spotify-logo {
+  color: #000;
+}
+
+.spotify-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.spotify-content {
+  position: relative;
+}
+
+.spotify-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0 0 1rem 0;
+  color: #000;
+}
+
+.spotify-text strong {
+  font-weight: 600;
+}
+
+.spotify-album-art {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  width: 80px;
+  height: 80px;
+}
+
+.album-cover {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #2a1810, #5d4037);
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.album-cover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.album-cover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Bucket List Card Specific */
+.bucket-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.05));
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.bucket-card .card-icon {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.bucket-card:hover .card-icon {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(34, 197, 94, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .explore-section {
+    padding: 4rem 1rem;
+  }
+
+  .explore-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .explore-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .explore-card {
+    padding: 1.5rem;
+  }
+
+  .card-icon-container {
+    gap: 0.75rem;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .guestbook-visual {
+    height: 60px;
+  }
+
+  .spotify-album-art {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .explore-header {
+    margin-bottom: 3rem;
+  }
+
+  .explore-card {
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+  }
+}

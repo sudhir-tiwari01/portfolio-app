@@ -30,6 +30,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { WorkComponent } from './work/work.component';
 import { SectionEndingComponent } from './section-ending/section-ending.component';
 import { ContentShowcaseComponent } from './content-showcase/content-showcase.component';
+import { ExploreSectionComponent } from './explore-section/explore-section.component';
 import { MoreUtilitiesModule } from './more-utilities/more-utilities.module';
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MoreUtilitiesModule } from './more-utilities/more-utilities.module';
     ExperienceComponent,
     WorkComponent,
     SectionEndingComponent,
-    ContentShowcaseComponent
+    ContentShowcaseComponent,
+    ExploreSectionComponent
   ],
   imports: [
     BrowserModule,

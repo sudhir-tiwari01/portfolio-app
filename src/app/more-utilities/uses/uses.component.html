@@ -1,11 +1,164 @@
-<div class="uses-container pt-16 sm:pt-20">
-  <div class="max-w-4xl mx-auto px-4">
-    <h1 class="text-4xl font-bold text-white mb-8">Uses</h1>
-    <p class="text-gray-300 text-lg mb-8">A peek into my digital workspace and tools</p>
+<div class="uses-container">
+  <div class="uses-wrapper">
+    <!-- Title Section with same styling as guestbook -->
+    <section class="uses-hero" role="region" aria-label="Uses hero">
+      <div class="hero-inner">
+        <div class="uses-title-container">
+          <h4 class="uses-subtitle">MY TOOLS</h4>
+          <h2 class="uses-main-title">
+            The <span class="uses-highlight">Setup</span>
+          </h2>
+        </div>
+      </div>
+    </section>
 
-    <!-- Placeholder content -->
-    <div class="bg-gray-800 rounded-lg p-8">
-      <p class="text-gray-400">My tech stack and tools coming soon...</p>
-    </div>
+    <!-- Tools Content -->
+    <section class="tools-content">
+      <!-- Hardware Section -->
+      <div class="tools-section">
+        <h3 class="section-title">Hardware & Setup</h3>
+        <div class="tools-grid single-item">
+          <div class="tool-card">
+            <div class="tool-icon">
+              💻
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Dell Precision 3580</h4>
+              <p class="tool-description">Primary development machine</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software & Tools Section -->
+      <div class="tools-section">
+        <h3 class="section-title">Software & Tools</h3>
+        <div class="tools-grid">
+          <!-- Development Tools -->
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://code.visualstudio.com/assets/images/code-stable.png" alt="VS Code" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">VS Code</h4>
+              <p class="tool-description">Primary code editor</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png" alt="IntelliJ IDEA" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">IntelliJ IDEA</h4>
+              <p class="tool-description">Java development</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://resources.jetbrains.com/storage/products/webstorm/img/meta/webstorm_logo_300x300.png" alt="WebStorm" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">WebStorm</h4>
+              <p class="tool-description">JavaScript development</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://www.postman.com/assets/logos/postman-logo-stacked.svg" alt="Postman" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Postman</h4>
+              <p class="tool-description">API testing</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://mobaxterm.mobatek.net/img/moba/xterm_logo.png" alt="MobaXterm" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">MobaXterm</h4>
+              <p class="tool-description">Terminal & SSH</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Desktop" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">GitHub Desktop</h4>
+              <p class="tool-description">Version control</p>
+            </div>
+          </div>
+
+          <!-- Frameworks & Libraries -->
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Bootstrap" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Bootstrap</h4>
+              <p class="tool-description">CSS framework</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://tailwindcss.com/favicons/favicon-32x32.png" alt="Tailwind CSS" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Tailwind CSS</h4>
+              <p class="tool-description">Utility-first CSS</p>
+            </div>
+          </div>
+
+          <!-- Productivity Tools -->
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://obsidian.md/images/obsidian-logo-gradient.svg" alt="Obsidian" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Obsidian</h4>
+              <p class="tool-description">Knowledge management</p>
+            </div>
+          </div>
+
+          <!-- Cloud & Services -->
+          <div class="tool-card">
+            <div class="tool-icon">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" alt="AWS" class="tool-logo">
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">AWS</h4>
+              <p class="tool-description">Cloud platform</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon logo-fallback veracode-logo">
+              <span class="logo-text">VC</span>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Veracode</h4>
+              <p class="tool-description">Security testing</p>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-icon logo-fallback workday-logo">
+              <span class="logo-text">WD</span>
+            </div>
+            <div class="tool-info">
+              <h4 class="tool-name">Workday</h4>
+              <p class="tool-description">HR platform</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>

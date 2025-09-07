@@ -1,0 +1,77 @@
+<!-- Explore Section Component -->
+<section class="explore-section">
+  <div class="explore-container">
+    <!-- Section Header -->
+    <div class="explore-header">
+      <div class="explore-subtitle">MY SITE</div>
+      <h2 class="explore-title">
+        Explore, experiment
+        <span class="explore-highlight">& say hello</span>
+      </h2>
+    </div>
+
+    <!-- Explore Grid -->
+    <div class="explore-grid">
+      <!-- Uses Card -->
+      <div class="explore-card uses-card" (click)="navigateToUses()">
+        <div class="card-icon-container">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7v10c0 5.55 3.84 10 9 10s9-4.45 9-10V7l-10-5z"/>
+              <path d="M12 22s8-4 8-10V7l-8-5-8 5v5c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+            </svg>
+          </div>
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M10 4v4"/>
+              <path d="M14 4v4"/>
+              <path d="M4 8h16"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Uses</h3>
+          <p class="card-description">Check out my favorite tools and spots around the web.</p>
+        </div>
+      </div>
+
+      <!-- Guestbook Card -->
+      <div class="explore-card guestbook-card" (click)="navigateToGuestbook()">
+        <div class="guestbook-visual">
+          <div class="guestbook-screens">
+            <div class="screen screen-1"></div>
+            <div class="screen screen-2"></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Guestbook</h3>
+          <p class="card-description">Let me know you were here</p>
+        </div>
+      </div>
+
+      <!-- Bucket List Card -->
+      <div class="explore-card bucket-card" (click)="navigateToBucketList()">
+        <div class="card-icon-container">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18l-2 13H5L3 6z"/>
+              <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              <path d="M10 11v6"/>
+              <path d="M14 11v6"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Appreciation</h3>
+          <p class="card-description">Leave a feedback for me if we have worked together.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

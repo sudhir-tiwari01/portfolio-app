@@ -3,13 +3,45 @@
 /* HERO */
 .guestbook-hero {
   background: linear-gradient(180deg, rgba(4,4,6,0.92), #070707);
-  padding: 4rem 1.5rem;
+  padding: 4rem 1.5rem 2rem 1.5rem;
   text-align: center;
   margin-top: 35px;
   border-bottom: 1px solid rgba(255,255,255,0.02);
 }
 .hero-inner { max-width: 920px; margin: 0 auto; }
 
+/* Title styling matching home page featured section */
+.guestbook-title-container {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.guestbook-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 1rem 0;
+  font-family: sans-serif;
+}
+
+.guestbook-main-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #f0f0f0;
+  margin: 0;
+  font-family: serif;
+}
+
+.guestbook-highlight {
+  color: #e91e63; /* Pink/magenta color similar to the home page */
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Legacy styles (keeping for backwards compatibility) */
 .kicker {
   letter-spacing: 3px;
   font-size: 0.8rem;
@@ -38,6 +70,32 @@
   color: rgba(255,255,255,0.65);
   margin-top: 1rem;
   font-size: 1.02rem;
+}
+
+/* Responsive adjustments for title section */
+@media (max-width: 768px) {
+  .guestbook-hero {
+    padding: 3rem 1rem 1.5rem 1rem;
+  }
+
+  .guestbook-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .guestbook-main-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .guestbook-hero {
+    padding: 2rem 0.5rem 1rem 0.5rem;
+  }
+
+  .guestbook-subtitle {
+    font-size: 0.75rem;
+  }
 }
 
 /* PINNED CARD */
