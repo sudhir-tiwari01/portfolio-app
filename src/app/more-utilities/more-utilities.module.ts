@@ -11,7 +11,7 @@ import { AttributionComponent } from './attribution/attribution.component';
 
 const routes = [
   { path: 'guestbook', component: GuestbookComponent },
-  { path: 'bucket-list', component: BucketListComponent },
+  { path: 'appreciation', component: BucketListComponent },
   { path: 'links', component: LinksComponent },
   { path: 'uses', component: UsesComponent },
   { path: 'attribution', component: AttributionComponent }

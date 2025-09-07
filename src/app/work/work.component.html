@@ -418,8 +418,8 @@
     </div>
   </div>
   
-  <!-- Explore Section -->
-  <div style="margin-top: 40px;">
+  <!-- Explore Section - Only show when NOT in home context -->
+  <div *ngIf="!isHomeContext" style="margin-top: 40px;">
     <app-explore-section></app-explore-section>
   </div>
 </section>

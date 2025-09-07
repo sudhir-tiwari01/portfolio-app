@@ -22,8 +22,8 @@ export class ExploreSectionComponent {
     this.router.navigate(['/links']);
   }
 
-  navigateToBucketList() {
-    this.router.navigate(['/bucket-list']);
+  navigateToAppreciation() {
+    this.router.navigate(['/appreciation']);
   }
 
   navigateToAttribution() {

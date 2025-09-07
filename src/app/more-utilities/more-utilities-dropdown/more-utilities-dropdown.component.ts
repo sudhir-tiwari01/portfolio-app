@@ -23,9 +23,9 @@ export class MoreUtilitiesDropdownComponent {
       backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
-      title: 'Bucket List',
-      description: 'Things to do at least once in my life',
-      route: '/bucket-list',
+      title: 'Appreciation',
+      description: 'If you have worked with me, leave your thoughts.',
+      route: '/appreciation',
       backgroundImage: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
     },
     {
