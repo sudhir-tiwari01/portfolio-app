@@ -4,8 +4,27 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 
+// Optional MongoDB integration
+require('dotenv').config();
+const mongoose = require('mongoose');
+const TestimonialModel = require('./models/Testimonial');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+let dbConnected = false;
+const MONGODB_URI = process.env.MONGODB_URI;
+if (MONGODB_URI) {
+  mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      dbConnected = true;
+      console.log('✅ Connected to MongoDB');
+    })
+    .catch(err => {
+      dbConnected = false;
+      console.error('❌ MongoDB connection error:', err.message || err);
+    });
+}
 
 // Middleware
 app.use(cors());
@@ -37,7 +56,7 @@ const writeTestimonials = (testimonials) => {
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
     }
-    
+
     fs.writeFileSync(TESTIMONIALS_FILE, JSON.stringify(testimonials, null, 2));
     return true;
   } catch (error) {
@@ -54,62 +73,64 @@ const generateId = () => {
 // Routes
 
 // GET /api/testimonials - Get all testimonials
-app.get('/api/testimonials', (req, res) => {
+app.get('/api/testimonials', async (req, res) => {
   console.log('📡 API: GET /api/testimonials');
-  const testimonials = readTestimonials();
-  res.json({
-    success: true,
-    data: testimonials,
-    count: testimonials.length
-  });
+  try {
+    if (dbConnected) {
+      const docs = await TestimonialModel.find().sort({ timestamp: -1 }).lean();
+      return res.json({ success: true, data: docs, count: docs.length });
+    }
+    const testimonials = readTestimonials();
+    return res.json({ success: true, data: testimonials, count: testimonials.length });
+  } catch (err) {
+    console.error('Error fetching testimonials:', err);
+    return res.status(500).json({ success: false, error: 'Failed to fetch testimonials' });
+  }
 });
 
 // POST /api/testimonials - Add new testimonial
-app.post('/api/testimonials', (req, res) => {
+app.post('/api/testimonials', async (req, res) => {
   console.log('📡 API: POST /api/testimonials');
   console.log('Request body:', req.body);
-  
-  const { userName, position, company, message } = req.body;
-  
-  // Validation
-  if (!userName || !position || !company || !message) {
-    return res.status(400).json({
-      success: false,
-      error: 'All fields are required'
-    });
-  }
-  
-  // Create new testimonial
-  const newTestimonial = {
-    id: generateId(),
-    userName: userName.trim(),
-    position: position.trim(),
-    company: company.trim(),
-    message: message.trim(),
-    timestamp: new Date().toISOString(),
-    approved: true
-  };
-  
-  // Read existing testimonials
-  const testimonials = readTestimonials();
-  
-  // Add new testimonial to the beginning
-  testimonials.unshift(newTestimonial);
-  
-  // Write back to file
-  if (writeTestimonials(testimonials)) {
-    console.log('✅ API: Testimonial saved successfully');
-    res.status(201).json({
-      success: true,
-      message: 'Testimonial added successfully',
-      data: newTestimonial
-    });
-  } else {
-    console.error('❌ API: Failed to save testimonial');
-    res.status(500).json({
-      success: false,
-      error: 'Failed to save testimonial'
-    });
+  try {
+    const { userName, position, company, message } = req.body;
+    // Validation
+    if (!userName || !position || !company || !message) {
+      return res.status(400).json({ success: false, error: 'All fields are required' });
+    }
+
+    if (dbConnected) {
+      const doc = new TestimonialModel({
+        userName: userName.trim(),
+        position: position.trim(),
+        company: company.trim(),
+        message: message.trim(),
+        approved: true
+      });
+      const saved = await doc.save();
+      return res.status(201).json({ success: true, message: 'Testimonial added successfully', data: saved });
+    }
+
+    // Fallback to file-based storage
+    const newTestimonial = {
+      id: generateId(),
+      userName: userName.trim(),
+      position: position.trim(),
+      company: company.trim(),
+      message: message.trim(),
+      timestamp: new Date().toISOString(),
+      approved: true
+    };
+    const testimonials = readTestimonials();
+    testimonials.unshift(newTestimonial);
+    if (writeTestimonials(testimonials)) {
+      console.log('✅ API: Testimonial saved to file fallback');
+      return res.status(201).json({ success: true, message: 'Testimonial added successfully', data: newTestimonial });
+    }
+    return res.status(500).json({ success: false, error: 'Failed to save testimonial' });
+  } catch (err) {
+    console.error('Error saving testimonial:', err);
+    return res.status(500).json({ success: false, error: 'Internal server error' });
   }
 });
 
@@ -117,7 +138,7 @@ app.post('/api/testimonials', (req, res) => {
 app.get('/api/testimonials/:id', (req, res) => {
   const testimonials = readTestimonials();
   const testimonial = testimonials.find(t => t.id === req.params.id);
-  
+
   if (testimonial) {
     res.json({
       success: true,
