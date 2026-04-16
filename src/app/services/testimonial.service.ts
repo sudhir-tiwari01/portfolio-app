@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, combineLatest, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface Testimonial {
   id: string;
@@ -19,7 +20,7 @@ export interface Testimonial {
 export class TestimonialService {
   private readonly STORAGE_KEY = 'portfolio_appreciations';
   private readonly JSON_FILE_PATH = 'assets/data/testimonials.json';
-  private readonly API_BASE = 'http://localhost:3001/api';
+  private readonly API_BASE = environment.apiBase;
 
   private testimonialsSubject = new BehaviorSubject<Testimonial[]>([]);
   public testimonials$ = this.testimonialsSubject.asObservable();
@@ -78,7 +79,7 @@ export class TestimonialService {
       ...testimonial,
       id: this.generateId(),
       timestamp: new Date().toISOString(),
-  approved: true // Immediately store as approved (no moderation)
+      approved: true
     };
 
     // Try to POST to backend. If it fails, fall back to localStorage.
@@ -111,19 +112,15 @@ export class TestimonialService {
   }
 
   getApprovedTestimonials(): Observable<Testimonial[]> {
-  // No moderation: return all testimonials
-  return this.testimonials$;
+    return this.testimonials$;
   }
 
   getPendingTestimonials(): Observable<Testimonial[]> {
-  // Moderation removed - there are no pending testimonials
-  return of([]);
+    return of([]);
   }
 
-  // Method to export pending testimonials for manual approval
   exportPendingTestimonials(): string {
-  // Moderation removed - return empty list
-  return JSON.stringify([], null, 2);
+    return JSON.stringify([], null, 2);
   }
 
   private generateId(): string {

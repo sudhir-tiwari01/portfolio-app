@@ -14,7 +14,7 @@ if (!MONGODB_URI) {
 
 async function run() {
   try {
-    await mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(MONGODB_URI);
     console.log('Connected to MongoDB');
 
     const filePath = path.join(__dirname, '..', 'data', 'testimonials.json');
@@ -33,8 +33,8 @@ async function run() {
     // Optional: you may want to dedupe here; this script simply inserts
     const result = await Testimonial.insertMany(items.map(i => ({
       userName: i.userName || i.name || 'Anonymous',
-      position: i.position || i.position || '',
-      company: i.company || i.company || '',
+      position: i.position || '',
+      company: i.company || '',
       message: i.message || i.text || '',
       avatarUrl: i.avatarUrl || i.avatar || '',
       timestamp: i.timestamp ? new Date(i.timestamp) : new Date(),

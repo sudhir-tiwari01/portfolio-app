@@ -124,7 +124,7 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           {
             category: 'Database & Search',
-            technologies: ['Elasticsearch', 'PostgreSQL', 'Redis Cache']
+            technologies: ['Elasticsearch', 'PostgreSQL']
           },
           {
             category: 'Cloud & DevOps',
@@ -273,10 +273,6 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
         ],
         techStack: [
           {
-            category: 'Machine Learning',
-            technologies: ['Python', 'TensorFlow', 'Predictive Modeling', 'Data Analytics']
-          },
-          {
             category: 'Frontend',
             technologies: ['Angular', 'TypeScript', 'D3.js', 'Chart.js']
           },
@@ -290,10 +286,6 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         ],
         challenges: [
-          {
-            title: 'Machine Learning Integration',
-            description: 'Integrating complex ML models with real-time web applications while maintaining performance and accuracy.'
-          },
           {
             title: 'Data Pipeline Architecture',
             description: 'Building robust data pipelines that can handle large volumes of research data with real-time processing requirements.'

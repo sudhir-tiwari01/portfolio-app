@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 let dbConnected = false;
 const MONGODB_URI = process.env.MONGODB_URI;
 if (MONGODB_URI) {
-  mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect(MONGODB_URI)
     .then(() => {
       dbConnected = true;
       console.log('✅ Connected to MongoDB');
