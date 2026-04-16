@@ -981,6 +981,7 @@
 @media (max-width: 767px) {
   .work-section {
     padding: 2rem 0.5rem;
+    min-height: auto;
   }
 
   .work-title {
@@ -990,49 +991,70 @@
 
   .work-subtitle {
     font-size: 1.1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     padding: 0 1rem;
     text-align: center;
   }
 
   .carousel-container {
-    height: auto;
-    min-height: 600px;
-    max-height: 90vh;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
     margin: 0 0.5rem;
-    touch-action: pan-y;
+    overflow: visible;
   }
 
   .carousel-container.mobile {
     margin: 0 0.25rem;
-    touch-action: pan-y;
     user-select: none;
     -webkit-user-select: none;
   }
 
   .carousel-track {
-    height: 600px;
-    min-height: 600px;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible;
+    border-radius: 1rem;
   }
 
   .carousel-card {
-    height: 100%;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
     min-height: auto;
-    margin-bottom: 0;
+    transform: none !important;
     border-radius: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    display: none;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .carousel-card.active {
+    display: block;
+    z-index: 2;
+  }
+
+  .carousel-card.next,
+  .carousel-card.prev {
+    display: none;
+    opacity: 0 !important;
   }
 
   .card-content {
     flex-direction: column;
-    height: 100%;
-    min-height: auto;
+    height: auto !important;
+    overflow: visible;
   }
 
   .card-image-section {
     flex: 0 0 auto;
     padding: 1rem;
-    height: 180px;
+    height: auto;
+    min-height: 180px;
+    max-height: 220px;
   }
 
   .project-image-container {
@@ -1060,6 +1082,9 @@
     flex: 1;
     padding: 1rem;
     gap: 0.8rem;
+    overflow-y: visible !important;
+    max-height: none !important;
+    height: auto !important;
   }
 
   .project-header {
@@ -1121,7 +1146,7 @@
   }
 
   .skills-section {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   .skills-title {
@@ -1145,6 +1170,19 @@
     height: 14px;
   }
 
+  .carousel-navigation {
+    position: relative;
+    bottom: auto;
+    margin-top: 1rem;
+    gap: 1rem;
+    padding: 0 1rem;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .nav-button {
     width: 2.5rem;
     height: 2.5rem;
@@ -1157,14 +1195,6 @@
     transform: scale(1.05);
   }
 
-  .carousel-navigation {
-    bottom: 0.5rem;
-    gap: 1rem;
-    padding: 0 1rem;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
   .carousel-dots {
     gap: 0.4rem;
   }
@@ -1175,62 +1205,59 @@
   }
 
   .card-counter {
-    top: 0.5rem;
-    right: 1rem;
+    position: relative;
+    top: auto;
+    right: auto;
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
     opacity: 1 !important;
     visibility: visible !important;
+    display: inline-block;
+    text-align: center;
+    margin-top: 0.5rem;
   }
 
   .navigation-hint {
     font-size: 0.7rem;
-    bottom: -2rem;
+    position: relative;
+    bottom: auto;
     background: rgba(0, 0, 0, 0.6);
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     backdrop-filter: blur(8px);
+    margin-top: 0.5rem;
+    text-align: center;
   }
 
   .navigation-hint.mobile {
-    bottom: -2.5rem;
     font-size: 0.65rem;
     padding: 0.4rem 0.8rem;
   }
 
   /* Mobile swipe indicator */
   .mobile-swipe-indicator {
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    z-index: 10;
     background: rgba(139, 92, 246, 0.9);
-    padding: 0.8rem 1.2rem;
+    padding: 0.6rem 1rem;
     border-radius: 1rem;
     color: white;
     font-size: 0.8rem;
     backdrop-filter: blur(8px);
-    animation: pulseIndicator 3s infinite;
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-  }
-
-  @keyframes pulseIndicator {
-    0%, 100% {
-      opacity: 0.8;
-      transform: translateX(-50%) scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: translateX(-50%) scale(1.05);
-    }
+    text-align: center;
+    margin-bottom: 0.75rem;
   }
 
   .swipe-hint {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.3rem;
   }
 
@@ -1238,41 +1265,9 @@
     font-size: 0.8rem;
   }
 
-  /* Mobile-enhanced creative overlay */
-  .creative-hover-overlay.mobile-enhanced {
-    background: linear-gradient(135deg,
-      rgba(139, 92, 246, 0.95) 0%,
-      rgba(59, 130, 246, 0.92) 50%,
-      rgba(6, 182, 212, 0.88) 100%);
-  }
-
-  .creative-hover-overlay.mobile-enhanced .overlay-center {
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-
-  .creative-hover-overlay.mobile-enhanced .explore-main {
-    font-size: 1rem;
-  }
-
-  .creative-hover-overlay.mobile-enhanced .explore-sub {
-    font-size: 0.8rem;
-  }
-
-  .creative-hover-overlay.mobile-enhanced .corner-frame {
-    width: 30px;
-    height: 30px;
-  }
-
-  .creative-hover-overlay.mobile-enhanced .floating-tech-badges {
-    top: 15px;
-    right: 15px;
-    gap: 6px;
-  }
-
-  .creative-hover-overlay.mobile-enhanced .tech-badge {
-    padding: 4px 8px;
-    font-size: 0.7rem;
-    min-width: 50px;
+  /* Hide the creative hover overlay on mobile - use button instead */
+  .creative-hover-overlay {
+    display: none !important;
   }
 
   /* Mobile clickable areas */
@@ -1280,17 +1275,10 @@
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: manipulation;
-  }
-
-  .card-image-section.mobile-clickable:focus {
-    outline: 2px solid #8b5cf6;
-    outline-offset: 2px;
   }
 
   /* Mobile navigation enhancements */
   .carousel-navigation.mobile {
-    bottom: 0.2rem;
     padding: 0 0.5rem;
   }
 
@@ -1299,7 +1287,6 @@
     height: 2.5rem;
     background: rgba(139, 92, 246, 0.9);
     backdrop-filter: blur(10px);
-    touch-action: manipulation;
   }
 
   .nav-button.mobile:active {
@@ -1314,7 +1301,6 @@
   .dot.mobile {
     width: 10px;
     height: 10px;
-    touch-action: manipulation;
   }
 
   .dot.mobile:active {
@@ -1334,6 +1320,7 @@
 
   .work-title {
     font-size: 1.3rem;
+    margin-top: 1rem;
   }
 
   .work-subtitle {
@@ -1345,12 +1332,9 @@
     margin: 0 0.25rem;
   }
 
-  .carousel-card {
-    min-height: 450px;
-  }
-
   .card-image-section {
-    height: 160px;
+    min-height: 150px;
+    max-height: 180px;
   }
 
   .project-image-container {
@@ -1593,6 +1577,8 @@
 
 /* Project Showcase Image - Attribution Theme */
 .project-showcase {
+  margin-left: 1rem;
+  margin-right: 1rem;
   margin-bottom: 3rem;
   border-radius: 16px;
   overflow: hidden;
@@ -2229,7 +2215,7 @@
 
   .detailed-header {
     padding: 0.8rem;
-    margin-bottom: 1rem;
+    margin: 1rem;
   }
 
   .detailed-project-name {
@@ -2334,12 +2320,12 @@
 
   .work-section.home-context .carousel-container {
     height: auto;
-    min-height: 400px;
+    min-height: auto;
   }
 
   .work-section.home-context .carousel-track {
-    height: 400px;
-    min-height: 400px;
+    height: auto;
+    min-height: auto;
   }
 }
 
@@ -2349,13 +2335,36 @@
   }
 
   .work-section.home-context .carousel-container {
-    min-height: 350px;
+    min-height: auto;
   }
 
   .work-section.home-context .carousel-track {
-    height: 350px;
-    min-height: 350px;
+    height: auto;
+    min-height: auto;
   }
+}
+
+/* ===== Mobile View Details Button ===== */
+.mobile-view-details-btn {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.mobile-view-details-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
 }
 
 

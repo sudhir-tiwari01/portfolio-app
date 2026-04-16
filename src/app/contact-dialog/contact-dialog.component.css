@@ -78,6 +78,42 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .dialog-card {
+    max-width: 95vw;
+    border-radius: 8px;
+  }
+
+  .tab-content {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .inner-card {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .dialog-header {
+    padding: 12px;
+  }
+
+  .social-icon {
+    font-size: 24px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog-email-font {
+    font-size: 0.65rem;
+  }
+}
+
 /* Card header bars */
 .card-header {
   display: flex;

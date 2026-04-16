@@ -9,11 +9,38 @@
       FROM CONCEPT TO <span class="highlight">CREATION</span><br />
       LET'S MAKE IT <span class="highlight">HAPPEN!</span>
     </h1>
-    <img
-      src="assets/images/open-to-work.png"
-      alt="Open to Work Badge"
-      class="badge"
-    />
+    <!-- Animated Open to Work Badge -->
+    <div class="otw-badge">
+      <div class="otw-ring">
+        <svg viewBox="0 0 120 120" class="otw-ring-svg">
+          <defs>
+            <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8b5cf6"/>
+              <stop offset="50%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+          <circle cx="60" cy="60" r="54" fill="none" stroke="url(#badgeGrad)" stroke-width="2" opacity="0.4"/>
+          <path id="textCircle" d="M 60,60 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0" fill="none"/>
+          <text class="otw-circular-text" fill="url(#badgeGrad)">
+            <textPath href="#textCircle" startOffset="0%">
+              OPEN TO WORK • OPEN TO WORK •&#160;
+            </textPath>
+          </text>
+        </svg>
+      </div>
+      <div class="otw-center">
+        <svg class="otw-star" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L14.09 8.26L20.18 8.63L15.54 12.74L16.91 19.02L12 15.77L7.09 19.02L8.46 12.74L3.82 8.63L9.91 8.26L12 2Z" fill="url(#starGrad)"/>
+          <defs>
+            <linearGradient id="starGrad" x1="4" y1="2" x2="20" y2="19">
+              <stop offset="0%" stop-color="#8b5cf6"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
   </div>
 
   <!-- "Get In Touch" button now calls openContactDialog() -->

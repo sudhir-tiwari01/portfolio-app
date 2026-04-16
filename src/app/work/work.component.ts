@@ -561,25 +561,17 @@ export class WorkComponent implements OnInit, AfterViewInit, OnDestroy {
       container.addEventListener('touchstart', (e: TouchEvent) => {
         this.touchStartX = e.changedTouches[0].screenX;
         this.touchStartY = e.changedTouches[0].screenY;
-
-        // Prevent scrolling when swiping horizontally on mobile
-        if (this.isMobile) {
-          e.preventDefault();
-        }
-      }, { passive: false });
+      }, { passive: true });
 
       container.addEventListener('touchmove', (e: TouchEvent) => {
-        // Prevent vertical scrolling during horizontal swipe
-        if (this.isMobile) {
-          const currentX = e.changedTouches[0].screenX;
-          const currentY = e.changedTouches[0].screenY;
-          const diffX = Math.abs(currentX - this.touchStartX);
-          const diffY = Math.abs(currentY - this.touchStartY);
+        // Only prevent default for clearly horizontal swipes
+        const currentX = e.changedTouches[0].screenX;
+        const currentY = e.changedTouches[0].screenY;
+        const diffX = Math.abs(currentX - this.touchStartX);
+        const diffY = Math.abs(currentY - this.touchStartY);
 
-          // If horizontal movement is greater, prevent default to avoid scroll
-          if (diffX > diffY && diffX > 10) {
-            e.preventDefault();
-          }
+        if (diffX > diffY && diffX > 20) {
+          e.preventDefault();
         }
       }, { passive: false });
 

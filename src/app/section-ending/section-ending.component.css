@@ -84,31 +84,119 @@
   }
 }
 
-.badge {
+/* ===== Open to Work Badge ===== */
+.otw-badge {
+  position: relative;
   width: 100px;
   height: 100px;
-  border-radius: 40% 40% 40% 40%;
-  object-fit: cover;
-  margin-top: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 1.5rem auto 0;
 }
 
-.section-ending .main-heading-container .badge {
+.section-ending .main-heading-container .otw-badge {
   position: absolute;
-  top: -15px;
-  right: -100px;
-  width: 100px;
-  animation: rotateBadge 5s linear infinite;
+  top: -10px;
+  right: -120px;
+  margin: 0;
+}
 
-  @media (max-width: 768px) {
+.otw-ring {
+  width: 100%;
+  height: 100%;
+  animation: spinBadge 12s linear infinite;
+}
+
+.otw-ring-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.otw-circular-text {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.otw-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.otw-star {
+  width: 18px;
+  height: 18px;
+}
+
+@keyframes spinBadge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Badge responsive - desktop absolute positioning */
+@media (max-width: 1024px) {
+  .section-ending .main-heading-container .otw-badge {
+    right: -110px;
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-ending .main-heading-container .otw-badge {
     position: static;
     display: block;
-    margin: 1rem auto 0;
-    width: 70px;
+    margin: 1.2rem auto 0;
+    width: 80px;
+    height: 80px;
   }
 
-  @media (max-width: 480px) {
-    width: 60px;
+  .otw-center {
+    width: 30px;
+    height: 30px;
+  }
+
+  .otw-star {
+    width: 15px;
+    height: 15px;
+  }
+
+  .otw-circular-text {
+    font-size: 9.5px;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-ending .main-heading-container .otw-badge {
+    width: 70px;
+    height: 70px;
+    margin-top: 1rem;
+  }
+
+  .otw-center {
+    width: 26px;
+    height: 26px;
+  }
+
+  .otw-star {
+    width: 13px;
+    height: 13px;
+  }
+
+  .otw-circular-text {
+    font-size: 8.5px;
+    letter-spacing: 1.5px;
   }
 }
 
@@ -252,13 +340,5 @@
   }
 }
 
-/* Rotate “Open to Work” Badge */
-@keyframes rotateBadge {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* end of file */
 
