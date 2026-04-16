@@ -296,7 +296,7 @@
           class="initials-content"
           [class.hidden]="isImageHovered"
         >
-          SK
+          ST
         </div>
 
         <!-- Profile Image (hover state) -->
@@ -335,8 +335,8 @@
     <!-- Moving Cards Container -->
     <div class="testimonials-slider">
       <div class="testimonials-track" [style.animation-play-state]="isHovered ? 'paused' : 'running'">
-        <div 
-          *ngFor="let testimonial of testimonials; let i = index" 
+        <div
+          *ngFor="let testimonial of testimonials; let i = index"
           class="testimonial-card"
           [class]="getTestimonialCardClass(i)"
           (mouseenter)="isHovered = true"
@@ -355,10 +355,10 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Duplicate testimonials for seamless loop -->
-        <div 
-          *ngFor="let testimonial of testimonials; let i = index" 
+        <div
+          *ngFor="let testimonial of testimonials; let i = index"
           class="testimonial-card"
           [class]="getTestimonialCardClass(i)"
           (mouseenter)="isHovered = true"
