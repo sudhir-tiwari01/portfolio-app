@@ -206,21 +206,25 @@
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 1rem;
+}
 
-  strong {
-    color: #ffffff;
-  }
+.section-ending .availability strong {
+  color: #ffffff;
+}
 
-  .freelance {
-    color: #b983ff; /* purple highlight, up to you */
-    font-weight: 700;
-  }
+.section-ending .availability .freelance {
+  color: #b983ff;
+  font-weight: 700;
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .section-ending .availability {
     font-size: 1.1rem;
   }
+}
 
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
+  .section-ending .availability {
     font-size: 1rem;
   }
 }
@@ -231,14 +235,18 @@
   max-width: 700px;
   color: rgba(255, 255, 255, 0.85);
   margin-top: 0.5rem;
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .section-ending .subtext {
     font-size: 0.95rem;
     max-width: 90%;
     margin-top: 1rem;
   }
+}
 
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
+  .section-ending .subtext {
     font-size: 0.9rem;
     margin-top: 0.8rem;
   }
