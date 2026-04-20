@@ -8,9 +8,15 @@ import { Component, HostListener } from '@angular/core';
 export class NavbarComponent {
   isMobileMenuOpen = false;
   isMobile = false;
+  isScrolled = false;
 
   constructor() {
     this.checkScreenSize();
+  }
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.isScrolled = window.scrollY > 50;
   }
 
   @HostListener('window:resize', ['$event'])

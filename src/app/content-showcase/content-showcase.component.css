@@ -1929,3 +1929,9 @@
     max-width: 95%;
   }
 }
+
+@media (max-width: 768px) {
+  .bg-card-content {
+    padding: 0px;
+  }
+}
